@@ -1,11 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
-function Navigation() {
+import { formatVietnameseToString } from "../../utils/Common/formatVietnameseToString";
+import { apiGetAllCategories } from "../../services/category";
+
+const Navigation = () => {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const fetchAllCategories = async () => {
+      const response = await apiGetAllCategories();
+      if (response?.data.err === 0) {
+        setCategories(response.data.response);
+      }
+    };
+    fetchAllCategories();
+  }, []);
+
   return (
     <div className="w-screen h-[40px] flex justify-center items-center bg-secondary1 text-white">
-      <div className="w-1100">Navigation</div>
+      <div className="w-3/5 h-full flex items-center text-sm font-medium">
+        <div className="h-full flex">
+          <NavLink
+            to={"/"}
+            className={({ isActive }) =>
+              isActive
+                ? "hover:bg-secondary2 flex items-center px-4 bg-secondary2"
+                : "hover:bg-secondary2 flex items-center px-4"
+            }
+          >
+            Trang chủ
+          </NavLink>
+        </div>
+        {categories.length > 0 &&
+          categories.map((item) => {
+            return (
+              <div key={item.code} className="h-full flex">
+                <NavLink
+                  to={formatVietnameseToString(item.value)}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "hover:bg-secondary2 flex items-center px-4 bg-secondary2"
+                      : "hover:bg-secondary2 flex items-center px-4"
+                  }
+                >
+                  {item.value}
+                </NavLink>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
-}
+};
 
 export default Navigation;

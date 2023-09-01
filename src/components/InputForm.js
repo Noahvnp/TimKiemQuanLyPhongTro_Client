@@ -4,30 +4,31 @@ const InputForm = ({
   label,
   value,
   setValue,
-  type,
+  keyValue,
   invalidFields,
   setInvalidFields,
+  type,
 }) => {
   return (
     <div>
-      <label htmlFor="phone" className="text-xs">
+      <label htmlFor={keyValue} className="text-xs">
         {label}
       </label>
       <input
-        type="text"
-        id="phone"
+        type={type || "text"}
+        id={keyValue || ""}
         className="outline-none bg-[#e8f0fe] p-2 rounded-md w-full"
         value={value}
         onChange={(e) =>
-          setValue((prev) => ({ ...prev, [type]: e.target.value }))
+          setValue((prev) => ({ ...prev, [keyValue]: e.target.value }))
         }
         onFocus={() => setInvalidFields([])}
       />
       {/* Render ra lỗi của trường đó bằng cách tìm tên lỗi trùng với type input */}
       {invalidFields.length > 0 &&
-        invalidFields.some((i) => i.name === type) && (
+        invalidFields.some((i) => i.name === keyValue) && (
           <small className="text-red-500 italic">
-            {invalidFields.find((i) => i.name === type)?.message}
+            {invalidFields.find((i) => i.name === keyValue)?.message}
           </small>
         )}
     </div>

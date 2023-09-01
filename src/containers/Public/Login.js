@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Swl from "sweetalert2";
+
 import { InputForm, Button } from "../../components";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as actions from "../../store/actions";
@@ -8,7 +10,7 @@ const Login = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, msg, update } = useSelector((state) => state.auth);
   const [isRegister, setIsRegister] = useState(location.state?.flag);
   const [invalidFields, setInvalidFields] = useState([]);
   const [payload, setPayload] = useState({
@@ -23,6 +25,10 @@ const Login = () => {
   useEffect(() => {
     isLoggedIn && navigate("/");
   }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    msg && Swl.fire("Oops!", msg, "error");
+  }, [msg, update]);
 
   const handleSubmit = async () => {
     const finalPayload = isRegister
@@ -103,7 +109,7 @@ const Login = () => {
             label={"HỌ TÊN"}
             value={payload.name}
             setValue={setPayload}
-            type="name"
+            keyValue={"name"}
           />
         )}
         <InputForm
@@ -112,7 +118,7 @@ const Login = () => {
           label={"SỐ ĐIỆN THOẠI"}
           value={payload.phone}
           setValue={setPayload}
-          type="phone"
+          keyValue={"phone"}
         />
         <InputForm
           invalidFields={invalidFields}
@@ -120,6 +126,7 @@ const Login = () => {
           label={"MẬT KHẨU"}
           value={payload.password}
           setValue={setPayload}
+          keyValue={"password"}
           type="password"
         />
         <Button
@@ -157,6 +164,11 @@ const Login = () => {
               className="text-[blue] hover:text-[red] cursor-pointer"
               onClick={() => {
                 setIsRegister(true);
+                setPayload({
+                  phone: "",
+                  password: "",
+                  name: "",
+                });
               }}
             >
               Tạo tài khoản mới
