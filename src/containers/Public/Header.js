@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useCallback, useRef } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import logo from "../../assets/logowithoutbg.png";
@@ -13,13 +13,20 @@ const { AiOutlinePlusCircle } = icons;
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const headerRef = useRef();
   const { isLoggedIn } = useSelector((state) => state.auth);
+
   const goLogin = useCallback((flag) => {
     navigate(Path.LOGIN, { state: { flag } });
   }, []);
 
+  useEffect(() => {
+    headerRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [searchParams.get("page")]);
+
   return (
-    <div className="w-3/5 flex items-center justify-between">
+    <div ref={headerRef} className="w-3/5 flex items-center justify-between">
       <Link to={"/"}>
         <img
           src={logo}

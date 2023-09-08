@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { formatVietnameseToString } from "../../utils/Common/formatVietnameseToString";
-import { apiGetAllCategories } from "../../services/category";
+import { apiGetAllCategories } from "../../services/categoryService";
 
 const Navigation = () => {
   const [categories, setCategories] = useState([]);
@@ -17,15 +17,15 @@ const Navigation = () => {
   }, []);
 
   return (
-    <div className="w-screen h-[40px] flex justify-center items-center bg-secondary1 text-white">
+    <div className="w-full h-[40px] flex justify-center items-center bg-secondary1 text-white">
       <div className="w-3/5 h-full flex items-center text-sm font-medium">
         <div className="h-full flex">
           <NavLink
             to={"/"}
             className={({ isActive }) =>
               isActive
-                ? "hover:bg-secondary2 flex items-center px-4 bg-secondary2"
-                : "hover:bg-secondary2 flex items-center px-4"
+                ? "hover:bg-secondary2 flex items-center p-3 bg-secondary2"
+                : "hover:bg-secondary2 flex items-center p-3"
             }
           >
             Trang chủ
@@ -39,8 +39,8 @@ const Navigation = () => {
                   to={formatVietnameseToString(item.value)}
                   className={({ isActive }) =>
                     isActive
-                      ? "hover:bg-secondary2 flex items-center px-4 bg-secondary2"
-                      : "hover:bg-secondary2 flex items-center px-4"
+                      ? "hover:bg-secondary2 flex items-center p-3 bg-secondary2"
+                      : "hover:bg-secondary2 flex items-center p-3"
                   }
                 >
                   {item.value}
