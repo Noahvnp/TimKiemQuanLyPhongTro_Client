@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
+import * as actions from "../../store/actions";
+
 import { formatVietnameseToString } from "../../utils/Common/formatVietnameseToString";
-import { apiGetAllCategories } from "../../services/categoryService";
 
 const Navigation = () => {
-  const [categories, setCategories] = useState([]);
+  const dispatch = useDispatch();
+  const { categories } = useSelector((state) => state.app);
   useEffect(() => {
-    const fetchAllCategories = async () => {
-      const response = await apiGetAllCategories();
-      if (response?.data.err === 0) {
-        setCategories(response.data.response);
-      }
-    };
-    fetchAllCategories();
+    dispatch(actions.getAllCategories());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

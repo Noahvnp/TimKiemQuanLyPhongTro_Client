@@ -1,16 +1,31 @@
 import React, { memo } from "react";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 
 const PageNumber = ({ text, icon, currentPage, setCurrentPage }) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  let entries = searchParams.entries();
+  const appendSearchParams = (entries) => {
+    let arrParams = [];
+    searchParams.append("page", +text || 1);
+    for (let entry of entries) arrParams.push(entry);
+    let objParams = {};
+    arrParams?.map(
+      (param) => (objParams = { ...objParams, [param[0]]: param[1] })
+    );
+    return objParams;
+  };
+
   const handleChangePage = () => {
     if (!(text === "...")) {
-      setCurrentPage(+text);
+      setCurrentPage(+text || 1);
       navigate({
         pathname: "/",
-        search: createSearchParams({
-          page: text,
-        }).toString(),
+        search: createSearchParams(appendSearchParams(entries)).toString(),
       });
     }
   };
