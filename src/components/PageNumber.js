@@ -9,6 +9,7 @@ const PageNumber = ({ text, icon, currentPage, setCurrentPage }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   let entries = searchParams.entries();
+
   const appendSearchParams = (entries) => {
     let arrParams = [];
     searchParams.append("page", +text || 1);
@@ -32,8 +33,12 @@ const PageNumber = ({ text, icon, currentPage, setCurrentPage }) => {
 
   return (
     <div
-      className={`w-[46px] h-[48px] flex items-center justify-center hover:bg-gray-500 rounded-md shadow-md 
-          ${+text === +currentPage ? "bg-[#E13427] text-white" : "bg-white"}
+      className={`w-[46px] h-[48px] flex items-center justify-center hover:bg-gray-200 rounded-md
+          ${
+            +text === +currentPage
+              ? "bg-[#E13427] text-white hover:text-[#E13427]"
+              : "bg-white"
+          }
           ${text === "..." ? "cursor-text" : "cursor-pointer"}`}
       onClick={handleChangePage}
     >

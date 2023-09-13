@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { textHomeContent } from "../../utils/constants";
-import { ItemSidebar, Province } from "../../components";
+import { ItemSidebar, Province, RelatedPost } from "../../components";
 import { List, Pagination } from "../Public";
 
 import * as actions from "../../store/actions";
@@ -44,6 +44,7 @@ const HomePage = () => {
             type={"acreageCode"}
             isDouble={true}
           />
+          <RelatedPost />
         </div>
       </div>
     </div>
