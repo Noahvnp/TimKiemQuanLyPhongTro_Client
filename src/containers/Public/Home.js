@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import ScrollToTop from "react-scroll-to-top";
 
 import Header from "./Header";
@@ -7,9 +8,18 @@ import { Navigation, Search } from "../Public";
 import { Intro, Contact } from "../../components";
 import icons from "../../utils/icons";
 
+import * as actions from "../../store/actions";
+
 const { GrLinkTop } = icons;
 
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actions.getAllCategories());
+    dispatch(actions.getAllPrices());
+    dispatch(actions.getAllAcreages());
+  }, []);
+
   return (
     <div className="w-full flex flex-col items-center h-full">
       <Header />

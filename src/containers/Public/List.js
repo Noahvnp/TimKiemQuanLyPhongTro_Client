@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+
 import { Button, Item } from "../../components";
 
 import { getPostsLimit } from "../../store/actions/post";
-import { useSearchParams } from "react-router-dom";
 
-const List = () => {
+const List = ({ categoryCode }) => {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.post);
@@ -16,8 +17,9 @@ const List = () => {
     arrParams?.map(
       (param) => (objParams = { ...objParams, [param[0]]: param[1] })
     );
+    if (categoryCode) objParams.categoryCode = categoryCode;
     dispatch(getPostsLimit(objParams));
-  }, [searchParams]);
+  }, [searchParams, categoryCode]);
 
   return (
     <div className="w-full bg-white border border-gray-300 shadow-md rounded-md px-4">

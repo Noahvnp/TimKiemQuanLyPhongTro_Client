@@ -1,18 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-
-import * as actions from "../../store/actions";
 
 import { formatVietnameseToString } from "../../utils/Common/formatVietnameseToString";
 
 const Navigation = () => {
-  const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.app);
-  useEffect(() => {
-    dispatch(actions.getAllCategories());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="w-full h-[40px] flex justify-center items-center bg-secondary1 text-white">
