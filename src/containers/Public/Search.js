@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { createSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { Path } from "../../utils/constants";
@@ -21,6 +21,7 @@ const Search = () => {
     (state) => state.app
   );
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isShowModal, setIsShowModal] = useState(false);
   const [content, setContent] = useState([]);
@@ -31,6 +32,16 @@ const Search = () => {
     priceArr: [0, 100],
     acreageArr: [0, 100],
   });
+
+  useEffect(() => {
+    if (!location.pathname.includes(Path.DETAIL_SEARCH)) {
+      setArrMinMax({
+        priceArr: [0, 100],
+        acreageArr: [0, 100],
+      });
+      setQueries({});
+    }
+  }, [location]);
 
   const handleShowModal = (content, name, defaultText) => {
     setContent(content);
@@ -51,14 +62,31 @@ const Search = () => {
     const arrQueryCodes = Object.entries(queries)
       .filter((item) => item[0].includes("Code"))
       .filter((item) => item[1]);
+
+    const arrQueryTexts = Object.entries(queries).filter(
+      (item) => !item[0].includes("Code")
+    );
+
     let objQueryCodes = {};
-    arrQueryCodes.forEach((item) => (objQueryCodes[item[0]] = item[1]));
-    // console.log(objQueryCodes);
-    // dispatch(actions.getPostsLimit(objQueryCodes));
-    navigate({
-      pathname: Path.DETAIL_SEARCH,
-      search: createSearchParams(objQueryCodes).toString(),
-    });
+    arrQueryCodes.forEach((item) => (objQueryCodes[item[0]] = item[1])); //Lấy mảng đã lọc chuyển thành obj
+
+    let objQueryTexts = {};
+    arrQueryTexts.forEach((item) => (objQueryTexts[item[0]] = item[1])); //Lấy mảng đã lọc chuyển thành obj
+    let titleSearch = `${
+      objQueryTexts?.category
+        ? `${objQueryTexts?.category}`
+        : "Cho thuê nhà trọ, phòng trọ"
+    } ${objQueryTexts?.province ? `ở ${objQueryTexts?.province}` : ""} ${
+      objQueryTexts?.price ? `giá ${objQueryTexts?.price},` : ""
+    } ${objQueryTexts?.acreage ? `diện tích ${objQueryTexts?.acreage}.` : ""}`;
+
+    navigate(
+      {
+        pathname: Path.DETAIL_SEARCH,
+        search: createSearchParams(objQueryCodes).toString(),
+      },
+      { state: { titleSearch } }
+    );
   };
 
   return (
