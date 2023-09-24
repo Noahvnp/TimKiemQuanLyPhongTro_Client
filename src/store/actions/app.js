@@ -3,6 +3,7 @@ import {
   apiGetAllCategories,
   apiGetAllPrices,
   apiGetAllAcreages,
+  apiGetAllProvinces,
 } from "../../services";
 
 export const getAllCategories = () => async (dispatch) => {
@@ -23,6 +24,7 @@ export const getAllCategories = () => async (dispatch) => {
     dispatch({
       type: actionTypes.GET_ALL_CATEGROIES,
       categories: null,
+      msg: error,
     });
   }
 };
@@ -45,6 +47,7 @@ export const getAllPrices = () => async (dispatch) => {
     dispatch({
       type: actionTypes.GET_ALL_PRICES,
       prices: null,
+      msg: error,
     });
   }
 };
@@ -67,6 +70,30 @@ export const getAllAcreages = () => async (dispatch) => {
     dispatch({
       type: actionTypes.GET_ALL_PRICES,
       prices: null,
+      msg: error,
+    });
+  }
+};
+
+export const getAllProvinces = () => async (dispatch) => {
+  try {
+    const response = await apiGetAllProvinces();
+    if (response?.data.err === 0) {
+      dispatch({
+        type: actionTypes.GET_ALL_PROVINCES,
+        provinces: response.data.response,
+      });
+    } else {
+      dispatch({
+        type: actionTypes.GET_ALL_PROVINCES,
+        msg: response.data.msg,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: actionTypes.GET_ALL_PROVINCES,
+      provinces: null,
+      msg: error,
     });
   }
 };

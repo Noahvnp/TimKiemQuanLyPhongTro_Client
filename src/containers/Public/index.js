@@ -8,3 +8,4 @@ export { default as RentalPage } from "./RentalPage";
 export { default as List } from "./List";
 export { default as Pagination } from "./Pagination";
 export { default as DetailPost } from "./DetailPost";
+export { default as DetaiSearch } from "./DetaiSearch";

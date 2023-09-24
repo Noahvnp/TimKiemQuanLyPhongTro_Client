@@ -18,6 +18,7 @@ const Home = () => {
     dispatch(actions.getAllCategories());
     dispatch(actions.getAllPrices());
     dispatch(actions.getAllAcreages());
+    dispatch(actions.getAllProvinces());
   }, []);
 
   return (

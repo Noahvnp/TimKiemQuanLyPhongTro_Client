@@ -10,13 +10,18 @@ const List = ({ categoryCode }) => {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.post);
+
   useEffect(() => {
     let arrParams = [];
-    for (let entry of searchParams.entries()) arrParams.push(entry);
+    for (let entry of searchParams.entries()) arrParams.push(entry); //Chuyển object thành 1 mảng lớn chứa nhiều mảng nhỏ gồm [[key, value], [key, value], ...]
+
     let objParams = {};
-    arrParams?.map(
-      (param) => (objParams = { ...objParams, [param[0]]: param[1] })
-    );
+    arrParams?.forEach((param) => {
+      if (Object.keys(objParams)?.some((item) => item === param[0])) {
+        //Nếu đã có key trong obj thì truyền vào các mảng đã có sẵn với key tươn ứng trong mảng lớn đó
+        objParams[param[0]] = [...objParams[param[0]], param[1]];
+      } else objParams = { ...objParams, [param[0]]: [param[1]] }; // Nếu chưa có thì tạo obj mới với key = [param[0]], value là mảng [param[1]]
+    });
     if (categoryCode) objParams.categoryCode = categoryCode;
     dispatch(getPostsLimit(objParams));
   }, [searchParams, categoryCode]);

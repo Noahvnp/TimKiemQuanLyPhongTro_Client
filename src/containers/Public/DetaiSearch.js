@@ -1,37 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import { useSelector } from "react-redux";
 
-import { ItemSidebar, Province, RelatedPost } from "../../components";
+import { ItemSidebar, RelatedPost } from "../../components";
 import { List, Pagination } from "../Public";
 
-import { formatVietnameseToString } from "../../utils/Common/formatVietnameseToString";
-
-const RentalPage = () => {
-  const { categories, prices, acreages } = useSelector((state) => state?.app);
-  const [currentCategory, setCurrentCategory] = useState({});
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.pathname !== "/") {
-      const category = categories?.find(
-        (item) =>
-          `/${formatVietnameseToString(item.value)}` === location.pathname
-      );
-      setCurrentCategory(category);
-    }
-  }, [location, currentCategory]);
+const DetailSearch = () => {
+  const { prices, acreages } = useSelector((state) => state?.app);
 
   return (
     <div className="w-full flex flex-col gap-3">
-      <div>
+      {/* <div>
         <h1 className="text-[28px] font-bold">{currentCategory?.header}</h1>
         <p className="text-base text-gray-700">{currentCategory?.subheader}</p>
-      </div>
-      <Province />
+      </div> */}
       <div className="w-full flex gap-4">
         <div className="w-[70%]">
-          <List categoryCode={currentCategory?.code} />
+          <List />
           <Pagination />
         </div>
         <div className="w-[30%] flex flex-col gap-4 justify-start items-center">
@@ -54,4 +38,4 @@ const RentalPage = () => {
   );
 };
 
-export default RentalPage;
+export default DetailSearch;

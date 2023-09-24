@@ -9,6 +9,7 @@ export const Path = {
   NHA_CHO_THUE: "nha-cho-thue",
   CHO_THUE_PHONG_TRO: "cho-thue-phong-tro",
   DETAIL_POST__TITLE__POSTID: "chi-tiet/:title/:postId",
+  DETAIL_SEARCH: "tim-kiem",
 };
 
 export const textHomeContent = {

@@ -16,10 +16,18 @@ const PageNumber = ({ text, icon, currentPage, setCurrentPage }) => {
     let arrParams = [];
     searchParams.append("page", +text || 1);
     for (let entry of entries) arrParams.push(entry);
+
     let objParams = {};
-    arrParams?.map(
-      (param) => (objParams = { ...objParams, [param[0]]: param[1] })
-    );
+    arrParams?.forEach((param) => {
+      if (
+        Object.keys(objParams)?.some(
+          (item) => item === param[0] && item !== "page"
+        )
+      ) {
+        //Nếu đã có key trong obj thì truyền vào các mảng đã có sẵn với key tươn ứng trong mảng lớn đó
+        objParams[param[0]] = [...objParams[param[0]], param[1]];
+      } else objParams = { ...objParams, [param[0]]: [param[1]] }; // Nếu chưa có thì tạo obj mới với key = [param[0]], value là mảng [param[1]]
+    });
     return objParams;
   };
 
