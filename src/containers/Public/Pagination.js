@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { PageNumber } from "../../components";
 import icons from "../../utils/icons";
 
-const { GrLinkNext, GrLinkPrevious } = icons;
+const { GrLinkNext } = icons;
 
 const Pagination = () => {
   const [searchParams] = useSearchParams();
@@ -23,14 +23,14 @@ const Pagination = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    let maxPages = Math.ceil(count / process.env.REACT_APP_LIMIT_POSTSIZE);
-    let nextPage = currentPage + 1 > maxPages ? maxPages : currentPage + 1;
-    let prevPage = currentPage - 1 <= 0 ? 1 : currentPage - 1;
+    let maxPage = Math.ceil(count / process.env.REACT_APP_LIMIT_POSTSIZE);
+    let nextPage = currentPage + 2 > maxPage ? maxPage : currentPage + 2;
+    let prevPage = currentPage - 2 <= 1 ? 1 : currentPage - 2;
     let temp = [];
     for (let i = prevPage; i <= nextPage; i++) temp.push(i);
     setArrPages(temp);
-    currentPage <= 2 ? setIsHidePrevPage(true) : setIsHidePrevPage(false);
-    currentPage >= maxPages - 1
+    currentPage <= 3 ? setIsHidePrevPage(true) : setIsHidePrevPage(false);
+    currentPage >= maxPage - 2
       ? setIsHideNextPage(true)
       : setIsHideNextPage(false);
   }, [count, posts, currentPage]);
@@ -38,13 +38,9 @@ const Pagination = () => {
   return (
     <div className="flex items-center justify-center gap-2 py-5">
       {!isHidePrevPage && (
-        <PageNumber
-          icon={<GrLinkPrevious />}
-          text={1}
-          setCurrentPage={setCurrentPage}
-        />
+        <PageNumber text={1} setCurrentPage={setCurrentPage} />
       )}
-      {!isHidePrevPage && <PageNumber text={"..."} />}
+      {!isHidePrevPage && currentPage !== 4 && <PageNumber text={"..."} />}
       {arrPages.length > 0 &&
         arrPages.map((item) => (
           <PageNumber

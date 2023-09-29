@@ -60,11 +60,11 @@ const Search = () => {
   const handleSearch = () => {
     // Chuyển object thành array, sau đó lọc name có chứa code
     const arrQueryCodes = Object.entries(queries)
-      .filter((item) => item[0].includes("Code"))
+      .filter((item) => item[0].includes("Code") || item[0].includes("Number"))
       .filter((item) => item[1]);
 
     const arrQueryTexts = Object.entries(queries).filter(
-      (item) => !item[0].includes("Code")
+      (item) => !item[0].includes("Code") || !item[0].includes("Number")
     );
 
     let objQueryCodes = {};

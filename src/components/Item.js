@@ -39,7 +39,7 @@ const Item = ({
                 key={indexImageSelected}
                 src={imageSelected}
                 alt="preview"
-                className="w-[140px] h-[140px] object-cover"
+                className="w-[48%] h-[120px] object-cover"
               />
             ))}
 

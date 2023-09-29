@@ -27,12 +27,12 @@ export const apiGetPostsLimit = (query) =>
     }
   });
 
-export const apiGetNewPosts = () =>
+export const apiGetLatestPosts = () =>
   new Promise(async (resolve, reject) => {
     try {
       const response = await axiosConfig({
         method: "GET",
-        url: "api/v1/post/new_posts",
+        url: "api/v1/post/latest_posts",
       });
       resolve(response);
     } catch (error) {

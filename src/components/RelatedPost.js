@@ -7,17 +7,18 @@ import * as actions from "../store/actions";
 
 const RelatedPost = () => {
   const dispatch = useDispatch();
-  const { new_posts } = useSelector((state) => state.post);
+  const { latest_posts } = useSelector((state) => state.post);
   useEffect(() => {
-    dispatch(actions.getNewPosts());
+    dispatch(actions.getLatestPosts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="w-full p-4 bg-white border border-gray-300 shadow-sm rounded-md">
       <h3 className="font-medium text-lg mb-4">Tin mới đăng</h3>
       <div className="w-full flex flex-col gap-2">
-        {new_posts?.length > 0 &&
-          new_posts.map((new_post) => (
+        {latest_posts?.length > 0 &&
+          latest_posts.map((new_post) => (
             <PostSidebar
               key={new_post.id}
               title={new_post.title}

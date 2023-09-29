@@ -5,7 +5,6 @@ import {
   getNumbersFromAcreage,
   getNumbersFromPrice,
 } from "../utils/Common/getNumbers";
-import { getGapsAcreages, getGapsPrices } from "../utils/Common/getCodes";
 
 const { GrLinkPrevious } = icons;
 
@@ -106,17 +105,14 @@ const Modal = ({
     let min = percent1 <= percent2 ? percent1 : percent2;
     let max = percent1 >= percent2 ? percent1 : percent2;
     let arrMinMax = [convertPercentToValue(min), convertPercentToValue(max)];
-    const gaps =
-      name === "price"
-        ? getGapsPrices(arrMinMax, content)
-        : getGapsAcreages(arrMinMax, content);
+
     handleSubmit(
       e,
       {
         [name]: `Từ ${convertPercentToValue(min)} - ${convertPercentToValue(
           max
         )} ${name === "price" ? " triệu" : " m2"}`,
-        [`${name}Code`]: gaps?.map((gap) => gap.code),
+        [`${name}Number`]: arrMinMax,
       },
       {
         [`${name}Arr`]: [min, max],

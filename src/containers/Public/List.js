@@ -24,6 +24,7 @@ const List = ({ categoryCode }) => {
     });
     if (categoryCode) objParams.categoryCode = categoryCode;
     dispatch(getPostsLimit(objParams));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, categoryCode]);
 
   return (
