@@ -11,3 +11,5 @@ export { default as Contact } from "./Contact";
 export { default as RelatedPost } from "./RelatedPost";
 export { default as PostSidebar } from "./PostSidebar";
 export { default as Modal } from "./Modal";
+export { default as User } from "./User";
+export { default as Navigation } from "./Navigation";

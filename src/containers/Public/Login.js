@@ -98,8 +98,9 @@ const Login = () => {
     });
     return invalidIndex;
   };
+
   return (
-    <div className="bg-white w-[600px] p-[30px] pb-[100px] m-auto rounded-md shadow-sm">
+    <div className="bg-white w-[600px] p-[30px] pb-[100px] mt-4 m-auto rounded-md shadow-sm">
       <h3 className="font-semibold text-2xl mb-3">
         {isRegister ? "Tạo tài khoản mới" : "Đăng nhập"}
       </h3>

@@ -35,7 +35,7 @@ const PageNumber = ({ text, icon, currentPage, setCurrentPage }) => {
     if (!(text === "...")) {
       setCurrentPage(+text || 1);
       navigate({
-        pathname: location.pathname,
+        pathname: location?.pathname,
         search: createSearchParams(appendSearchParams(entries)).toString(),
       });
     }

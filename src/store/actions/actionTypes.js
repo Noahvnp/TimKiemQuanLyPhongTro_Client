@@ -13,6 +13,9 @@ const actionTypes = {
   GET_ALL_PRICES: "GET_ALL_PRICES",
   GET_ALL_ACREAGES: "GET_ALL_ACREAGES",
   GET_ALL_PROVINCES: "GET_ALL_PROVINCES",
+
+  // USER
+  GET_CURRENT_USER: "GET_CURRENT_USER",
 };
 
 export default actionTypes;

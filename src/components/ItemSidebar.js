@@ -27,7 +27,7 @@ const ItemSidebar = ({ title, content, isDouble, type }) => {
 
   const handelFilterPost = (code) => {
     navigate({
-      pathname: location.pathname,
+      pathname: location?.pathname,
       search: createSearchParams({
         [type]: code,
       }).toString(),
