@@ -40,6 +40,9 @@ export const getGapsPrices = (arrMinMax, prices) => {
   const pricesMinMax = getCodePrices(prices);
   return pricesMinMax.filter(
     (price) =>
+      (arrMinMax[0] === arrMinMax[1] &&
+        price.min <= arrMinMax[0] &&
+        price.max > arrMinMax[1]) ||
       (price.min >= arrMinMax[0] && price.min < arrMinMax[1]) ||
       (price.max > arrMinMax[0] && price.max <= arrMinMax[1])
   );
@@ -49,6 +52,9 @@ export const getGapsAcreages = (arrMinMax, acreages) => {
   const acreagesMinMax = getCodeAcreages(acreages);
   return acreagesMinMax.filter(
     (acreage) =>
+      (arrMinMax[0] === arrMinMax[1] &&
+        acreage.min <= arrMinMax[0] &&
+        acreage.max > arrMinMax[1]) ||
       (acreage.min >= arrMinMax[0] && acreage.min < arrMinMax[1]) ||
       (acreage.max > arrMinMax[0] && acreage.max <= arrMinMax[1])
   );

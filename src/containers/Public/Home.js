@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ScrollToTop from "react-scroll-to-top";
 
 import Header from "./Header";
