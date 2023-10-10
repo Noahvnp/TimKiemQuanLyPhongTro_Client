@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 import { Address, Button, Overview, UploadImage } from "../../components";
 
 import { getGapsAcreages, getGapsPrices } from "../../utils/Common/getCodes";
+import { apiCreatePost } from "../../services";
+import validateFields from "../../utils/Common/validateFields";
 
 const CreatePost = () => {
-  const { prices, acreages } = useSelector((state) => state.app);
+  const { prices, acreages, categories } = useSelector((state) => state.app);
+  const { current_user } = useSelector((state) => state.user);
 
   const [payload, setPayload] = useState({
     categoryCode: "",
@@ -19,12 +23,17 @@ const CreatePost = () => {
     acreageCode: "",
     description: "",
     target: "",
+    label: "",
     province: "",
   });
+  const [invalidFields, setInvalidFields] = useState([]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     let priceCode = getGapsPrices(
-      [+payload.priceNumber, +payload.priceNumber],
+      [
+        +payload.priceNumber / Math.pow(10, 6),
+        +payload.priceNumber / Math.pow(10, 6),
+      ],
       prices
     )[0]?.code;
 
@@ -36,10 +45,48 @@ const CreatePost = () => {
     let finalPayload = {
       ...payload,
       priceCode,
+      priceNumber: +payload.priceNumber / Math.pow(10, 6),
       acreageCode,
+      userId: current_user.id,
+      target: payload.target || "Tất cả",
+      label: `${
+        categories?.find((category) => category.code === payload.categoryCode)
+          ?.value
+      } ${payload?.address?.split(",")?.[0]}`,
     };
 
-    console.log(finalPayload);
+    const result = await validateFields(finalPayload, setInvalidFields);
+    console.log(result);
+    if (result === 0) {
+      console.log(finalPayload);
+      const response = await apiCreatePost(finalPayload);
+      if (response?.data.err === 0) {
+        Swal.fire("Thành công!", "Đã thêm bài đăng mới!", "success").then(
+          () => {
+            setTimeout(
+              () =>
+                setPayload({
+                  categoryCode: "",
+                  title: "",
+                  priceNumber: 0,
+                  acreageNumber: 0,
+                  images: "",
+                  address: "",
+                  priceCode: "",
+                  acreageCode: "",
+                  description: "",
+                  target: "",
+                  label: "",
+                  province: "",
+                }),
+              1000
+            );
+          }
+        );
+      } else {
+        Swal.fire("Oops!", "Đã có lỗi xảy ra!", "error");
+      }
+    }
   };
 
   return (
@@ -49,9 +96,24 @@ const CreatePost = () => {
       </h1>
       <div className="flex gap-4">
         <div className="py-4 flex flex-col flex-auto gap-10">
-          <Address payload={payload} setPayload={setPayload} />
-          <Overview payload={payload} setPayload={setPayload} />
-          <UploadImage payload={payload} setPayload={setPayload} />
+          <Address
+            invalidFields={invalidFields}
+            setInvalidFields={setInvalidFields}
+            payload={payload}
+            setPayload={setPayload}
+          />
+          <Overview
+            invalidFields={invalidFields}
+            setInvalidFields={setInvalidFields}
+            payload={payload}
+            setPayload={setPayload}
+          />
+          <UploadImage
+            invalidFields={invalidFields}
+            setInvalidFields={setInvalidFields}
+            payload={payload}
+            setPayload={setPayload}
+          />
           <Button
             text="Tiếp tục"
             textColor="text-white"

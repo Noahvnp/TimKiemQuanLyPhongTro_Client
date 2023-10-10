@@ -36,7 +36,7 @@ function App() {
   }, [isLoggedIn]);
 
   return (
-    <div className="bg-primary">
+    <div className="bg-primary overflow-hidden">
       <Routes>
         <Route path={Path.HOME} element={<Home />}>
           <Route path="*" element={<HomePage />} />

@@ -7,7 +7,12 @@ import Loading from "./Loading";
 
 const { BsCameraFill, ImBin } = icons;
 
-const UploadImage = ({ payload, setPayload }) => {
+const UploadImage = ({
+  payload,
+  setPayload,
+  invalidFields,
+  setInvalidFields,
+}) => {
   const [imagesPreview, setImagesPreview] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -69,7 +74,12 @@ const UploadImage = ({ payload, setPayload }) => {
           multiple
           hidden
           onChange={(e) => handleFiles(e)}
+          onFocus={() => setInvalidFields([])}
         />
+        <small className="text-red-500">
+          {invalidFields?.some((field) => field.name === "images") &&
+            invalidFields?.find((field) => field.name === "images").message}
+        </small>
         {imagesPreview.length > 0 && (
           <h3 className="mt-6 font-medium">Ảnh đã chọn</h3>
         )}

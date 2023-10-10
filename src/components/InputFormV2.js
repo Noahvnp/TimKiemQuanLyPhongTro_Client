@@ -2,7 +2,16 @@ import React, { memo } from "react";
 
 import { formatVietnameseToString } from "../utils/Common/formatVietnameseToString";
 
-const InputFormV2 = ({ label, unit, value, setValue, name, small }) => {
+const InputFormV2 = ({
+  label,
+  unit,
+  value,
+  setValue,
+  name,
+  small,
+  invalidFields,
+  setInvalidFields,
+}) => {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={formatVietnameseToString(label)} className="font-medium">
@@ -12,6 +21,7 @@ const InputFormV2 = ({ label, unit, value, setValue, name, small }) => {
         <input
           type="text"
           id={formatVietnameseToString(label)}
+          onFocus={() => setInvalidFields([])}
           className={`w-full outline-blue-300 border border-gray-300 p-2 ${
             unit ? "rounded-tl-md rounded-bl-md" : "rounded-md"
           }`}
@@ -27,6 +37,10 @@ const InputFormV2 = ({ label, unit, value, setValue, name, small }) => {
         )}
       </div>
       {small && <small className="opacity-80">{small}</small>}
+      <small className="text-red-500">
+        {invalidFields?.some((field) => field.name === name) &&
+          invalidFields?.find((field) => field.name === name).message}
+      </small>
     </div>
   );
 };

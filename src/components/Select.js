@@ -2,7 +2,31 @@ import React, { memo } from "react";
 
 import { formatVietnameseToString } from "../utils/Common/formatVietnameseToString";
 
-const Select = ({ label, type, name, option, value, setValue, reset }) => {
+const Select = ({
+  label,
+  type,
+  name,
+  option,
+  value,
+  setValue,
+  reset,
+  invalidFields,
+  setInvalidFields,
+}) => {
+  const handleErrorText = () => {
+    let nameInvalid = invalidFields?.find((field) => field.name === name);
+    let addressInvalid = invalidFields?.find(
+      (field) => field.name === "address"
+    );
+
+    return (
+      <small className="text-red-500">
+        {`${nameInvalid ? nameInvalid.message : ""}` ||
+          `${addressInvalid ? addressInvalid.message : ""}`}
+      </small>
+    );
+  };
+
   return (
     <div className="flex flex-col gap-2 flex-1">
       <label htmlFor={formatVietnameseToString(label)} className="font-medium">
@@ -17,6 +41,7 @@ const Select = ({ label, type, name, option, value, setValue, reset }) => {
             ? setValue((prev) => ({ ...prev, [name]: e.target.value }))
             : setValue(e.target.value)
         }
+        onFocus={() => setInvalidFields([])}
       >
         <option value="">{`--Chọn ${label}--`}</option>
         {option?.map((item) => (
@@ -44,6 +69,7 @@ const Select = ({ label, type, name, option, value, setValue, reset }) => {
           </option>
         ))}
       </select>
+      {handleErrorText()}
     </div>
   );
 };

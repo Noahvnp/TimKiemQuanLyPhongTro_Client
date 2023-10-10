@@ -1,15 +1,15 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { useSelector } from "react-redux";
 
 import { InputFormV2, InputReadOnly, Select } from "../components";
 
 const objTargets = [
-  { code: "all", value: "Tất cả" },
-  { code: "male", value: "Nam" },
-  { code: "female", value: "Nữ" },
+  { code: "Tất cả", value: "Tất cả" },
+  { code: "Nam", value: "Nam" },
+  { code: "Nữ", value: "Nữ" },
 ];
 
-const Overview = ({ payload, setPayload }) => {
+const Overview = ({ payload, setPayload, invalidFields, setInvalidFields }) => {
   const { categories } = useSelector((state) => state.app);
   const { current_user } = useSelector((state) => state.user);
 
@@ -24,6 +24,8 @@ const Overview = ({ payload, setPayload }) => {
             name={"categoryCode"}
             value={payload.categoryCode}
             setValue={setPayload}
+            invalidFields={invalidFields}
+            setInvalidFields={setInvalidFields}
           />
         </div>
         <InputFormV2
@@ -31,6 +33,8 @@ const Overview = ({ payload, setPayload }) => {
           name="title"
           value={payload.title}
           setValue={setPayload}
+          invalidFields={invalidFields}
+          setInvalidFields={setInvalidFields}
         />
         <div className="flex flex-col gap-2">
           <label htmlFor="desc" className="font-medium">
@@ -45,7 +49,13 @@ const Overview = ({ payload, setPayload }) => {
             onChange={(e) =>
               setPayload((prev) => ({ ...prev, description: e.target.value }))
             }
+            onFocus={() => setInvalidFields([])}
           />
+          <small className="text-red-500">
+            {invalidFields?.some((field) => field.name === "description") &&
+              invalidFields?.find((field) => field.name === "description")
+                .message}
+          </small>
         </div>
 
         <div className="w-1/2 flex flex-col gap-4">
@@ -61,6 +71,8 @@ const Overview = ({ payload, setPayload }) => {
             value={payload.priceNumber}
             setValue={setPayload}
             name="priceNumber"
+            invalidFields={invalidFields}
+            setInvalidFields={setInvalidFields}
           />
           <InputFormV2
             label="Diện tích"
@@ -68,6 +80,8 @@ const Overview = ({ payload, setPayload }) => {
             value={payload.acreageNumber}
             setValue={setPayload}
             name="acreageNumber"
+            invalidFields={invalidFields}
+            setInvalidFields={setInvalidFields}
           />
           <Select
             label={"Đối tượng cho thuê"}
@@ -75,6 +89,8 @@ const Overview = ({ payload, setPayload }) => {
             value={payload.target}
             setValue={setPayload}
             name="target"
+            invalidFields={invalidFields}
+            setInvalidFields={setInvalidFields}
           />
         </div>
       </div>

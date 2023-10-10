@@ -3,7 +3,7 @@ import React, { useState, useEffect, memo } from "react";
 import { InputReadOnly, Select } from "../components";
 import { apiGetVietNamDistricts, apiGetVietNamProvinces } from "../services";
 
-const Address = ({ payload, setPayload }) => {
+const Address = ({ invalidFields, setInvalidFields, payload, setPayload }) => {
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [province, setProvince] = useState("");
@@ -56,7 +56,7 @@ const Address = ({ payload, setPayload }) => {
           }`
         : "",
     }));
-  }, [province, district]);
+  }, [province, district, setPayload, districts, provinces]);
 
   return (
     <div>
@@ -69,6 +69,8 @@ const Address = ({ payload, setPayload }) => {
             setValue={setProvince}
             option={provinces}
             label="Tỉnh/Thành Phố"
+            invalidFields={invalidFields}
+            setInvalidFields={setInvalidFields}
           />
           <Select
             type="district"
@@ -77,6 +79,8 @@ const Address = ({ payload, setPayload }) => {
             option={districts}
             reset={reset}
             label="Quận/Huyện"
+            invalidFields={invalidFields}
+            setInvalidFields={setInvalidFields}
           />
         </div>
         <InputReadOnly
