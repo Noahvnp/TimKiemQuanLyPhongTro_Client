@@ -1,15 +1,44 @@
 import React, { useState, useEffect, memo } from "react";
+import { useSelector } from "react-redux";
 
 import { InputReadOnly, Select } from "../components";
 import { apiGetVietNamDistricts, apiGetVietNamProvinces } from "../services";
 
 const Address = ({ invalidFields, setInvalidFields, payload, setPayload }) => {
+  const { dataEdit } = useSelector((state) => state.post);
+
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [province, setProvince] = useState("");
   const [district, setDistrict] = useState("");
   const [reset, setReset] = useState(false);
 
+  // Lấy data edit để render ra lại địa chỉ hiện tại
+  useEffect(() => {
+    let addressArr = dataEdit?.address?.split(",");
+    let foundedProvince = addressArr
+      ? provinces?.length > 0 &&
+        provinces?.find(
+          (province) =>
+            province.province_name === addressArr[addressArr.length - 1]?.trim()
+        )?.province_id
+      : "";
+    setProvince(foundedProvince);
+  }, [provinces]);
+
+  useEffect(() => {
+    let addressArr = dataEdit?.address?.split(",");
+    let foundedDistrict = addressArr
+      ? districts?.length > 0 &&
+        districts?.find(
+          (district) =>
+            district.district_name === addressArr[addressArr.length - 2]?.trim()
+        )?.district_id
+      : "";
+    setDistrict(foundedDistrict);
+  }, [districts]);
+
+  // Lấy ra toàn bộ tỉnh, thành VN
   useEffect(() => {
     const fetchVietNamProvinces = async () => {
       const response = await apiGetVietNamProvinces();
@@ -31,6 +60,7 @@ const Address = ({ invalidFields, setInvalidFields, payload, setPayload }) => {
     !province ? setReset(true) : setReset(false);
   }, [province]);
 
+  // Render ra province, district đã chọn
   useEffect(() => {
     setPayload((prev) => ({
       ...prev,

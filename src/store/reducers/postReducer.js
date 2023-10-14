@@ -3,6 +3,8 @@ import actionTypes from "../actions/actionTypes";
 const initState = {
   posts: [],
   latest_posts: [],
+  posts_current_user: [],
+  dataEdit: {},
   count: 0,
   msg: "",
 };
@@ -23,6 +25,26 @@ const postReducer = (state = initState, action) => {
         ...state,
         latest_posts: action.latest_posts || [],
         msg: action.msg || "",
+      };
+
+    case actionTypes.GET_POSTS_ADMIN:
+      return {
+        ...state,
+        posts_current_user: action.posts_current_user || [],
+        msg: action.msg || "",
+        count: action.count || 0,
+      };
+
+    case actionTypes.EDIT_POST:
+      return {
+        ...state,
+        dataEdit: action.dataEdit || {},
+      };
+
+    case actionTypes.RESET_DATA_EDIT:
+      return {
+        ...state,
+        dataEdit: null,
       };
 
     default:

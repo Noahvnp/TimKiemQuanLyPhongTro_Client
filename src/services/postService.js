@@ -68,3 +68,31 @@ export const apiCreatePost = (payload) =>
       reject(error);
     }
   });
+
+export const apiGetPostsLimitAdmin = (query) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosConfig({
+        method: "GET",
+        url: "api/v1/post/limit_admin",
+        params: query,
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+export const apiUpdatePost = (payload) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosConfig({
+        method: "PUT",
+        url: "api/v1/post/update_post",
+        data: payload,
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });

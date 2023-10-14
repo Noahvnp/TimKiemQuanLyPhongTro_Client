@@ -20,3 +20,4 @@ export { default as InputReadOnly } from "./InputReadOnly";
 export { default as InputFormV2 } from "./InputFormV2";
 export { default as UploadImage } from "./UploadImage";
 export { default as Loading } from "./Loading";
+export { default as UpdatePost } from "./UpdatePost";

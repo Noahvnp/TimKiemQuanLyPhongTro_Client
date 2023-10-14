@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import icons from "../utils/icons";
 
@@ -13,8 +14,19 @@ const UploadImage = ({
   invalidFields,
   setInvalidFields,
 }) => {
+  const { dataEdit } = useSelector((state) => state.post);
+
   const [imagesPreview, setImagesPreview] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (dataEdit) {
+      let images = dataEdit?.images?.image
+        ? JSON.parse(dataEdit?.images?.image)
+        : null;
+      images && setImagesPreview(images);
+    }
+  }, [dataEdit]);
 
   const handleFiles = async (e) => {
     e.stopPropagation();
