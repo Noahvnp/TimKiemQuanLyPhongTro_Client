@@ -40,6 +40,10 @@ const CreatePost = ({ isEdit }) => {
   });
   const [invalidFields, setInvalidFields] = useState([]);
 
+  useEffect(() => {
+    resetPayload();
+  }, [isEdit]);
+
   const resetPayload = () => {
     setPayload({
       categoryCode: "",

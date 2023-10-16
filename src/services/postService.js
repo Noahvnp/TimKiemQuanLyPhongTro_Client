@@ -96,3 +96,17 @@ export const apiUpdatePost = (payload) =>
       reject(error);
     }
   });
+
+export const apiDeletePost = (postId) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosConfig({
+        method: "DELETE",
+        url: "api/v1/post/delete_post",
+        params: { postId },
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
