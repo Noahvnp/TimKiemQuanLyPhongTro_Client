@@ -104,14 +104,19 @@ const Modal = ({
   const handleBeforeSubmit = (e) => {
     let min = percent1 <= percent2 ? percent1 : percent2;
     let max = percent1 >= percent2 ? percent1 : percent2;
-    let arrMinMax = [convertPercentToValue(min), convertPercentToValue(max)];
+    let arrMinMax =
+      min === max
+        ? [convertPercentToValue(min), 999999]
+        : [convertPercentToValue(min), convertPercentToValue(max)];
 
     handleSubmit(
       e,
       {
-        [name]: `Từ ${convertPercentToValue(min)} - ${convertPercentToValue(
-          max
-        )} ${name === "price" ? " triệu" : " m2"}`,
+        [name]: `${
+          min === max
+            ? `Trên ${convertPercentToValue(min)}`
+            : `Từ ${convertPercentToValue(min)} - ${convertPercentToValue(max)}`
+        }  ${name === "price" ? " triệu" : " m2"}`,
         [`${name}Number`]: arrMinMax,
       },
       {
@@ -281,7 +286,7 @@ const Modal = ({
                       bgColor={"bg-gray-200"}
                       noUnderline={true}
                       className={`${
-                        activeEl === item.code ? "bg-blue-500 text-white" : ""
+                        activeEl === item.code ? "bg-red-600 text-white" : ""
                       } `}
                       onClick={() =>
                         handleSetValueSelected(item.code, item.value)

@@ -3,6 +3,7 @@ import actionTypes from "../actions/actionTypes";
 const initState = {
   posts: [],
   latest_posts: [],
+  outstanding_posts: [],
   posts_current_user: [],
   dataEdit: null,
   count: 0,
@@ -24,6 +25,13 @@ const postReducer = (state = initState, action) => {
       return {
         ...state,
         latest_posts: action.latest_posts || [],
+        msg: action.msg || "",
+      };
+
+    case actionTypes.GET_OUTSTANDING_POSTS:
+      return {
+        ...state,
+        outstanding_posts: action.outstanding_posts || [],
         msg: action.msg || "",
       };
 

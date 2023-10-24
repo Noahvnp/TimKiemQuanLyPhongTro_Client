@@ -28,19 +28,6 @@ export const apiGetPostsLimit = (query) =>
     }
   });
 
-export const apiGetLatestPosts = () =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const response = await axiosConfig({
-        method: "GET",
-        url: "api/v1/post/latest_posts",
-      });
-      resolve(response);
-    } catch (error) {
-      reject(error);
-    }
-  });
-
 export const apiUploadImages = (images) =>
   new Promise(async (resolve, reject) => {
     try {

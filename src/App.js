@@ -8,6 +8,7 @@ import {
   RentalPage,
   DetailPost,
   DetailSearch,
+  Contact,
 } from "./containers/Public";
 
 import {
@@ -51,10 +52,12 @@ function App() {
           <Route path={Path.CHO_THUE_PHONG_TRO} element={<RentalPage />} />
           <Route path={Path.NHA_CHO_THUE} element={<RentalPage />} />
           <Route path={Path.DETAIL_SEARCH} element={<DetailSearch />} />
+          <Route path={Path.CONTACT} element={<Contact />} />
           <Route
             path={Path.DETAIL_POST__TITLE__POSTID}
             element={<DetailPost />}
           />
+          <Route path={Path.DETAIL_ALL} element={<DetailPost />} />
         </Route>
         <Route path={Path.SYSTEM} element={<System />}>
           <Route path={Path.CREATE_POST} element={<CreatePost />} />

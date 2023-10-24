@@ -36,6 +36,7 @@ const HomePage = () => {
             type={"acreageCode"}
             isDouble={true}
           />
+          <RelatedPost outstandingPosts />
           <RelatedPost />
         </div>
       </div>

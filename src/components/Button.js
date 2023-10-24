@@ -6,6 +6,7 @@ const Button = ({
   fontSz,
   noUnderline,
   bgColor,
+  IcBefore,
   IcAfter,
   onClick,
   fullWidth,
@@ -22,6 +23,7 @@ const Button = ({
       } outline-none rounded-md hover:underline flex items-center justify-center gap-1 ${className}`}
       onClick={onClick}
     >
+      {IcBefore && <IcBefore />}
       {text}
       {IcAfter && <IcAfter />}
     </button>

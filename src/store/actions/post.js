@@ -1,6 +1,5 @@
 import actionTypes from "./actionTypes";
 import {
-  apiGetLatestPosts,
   apiGetPosts,
   apiGetPostsLimit,
   apiGetPostsLimitAdmin,
@@ -54,11 +53,14 @@ export const getPostsLimit = (query) => async (dispatch) => {
 
 export const getLatestPosts = () => async (dispatch) => {
   try {
-    const response = await apiGetLatestPosts();
+    const response = await apiGetPostsLimit({
+      limitPost: 4,
+      order: [["createdAt", "DESC"]],
+    });
     if (response?.data.err === 0) {
       dispatch({
         type: actionTypes.GET_LATEST_POSTS,
-        latest_posts: response.data.response,
+        latest_posts: response.data.response?.rows,
       });
     } else {
       dispatch({
@@ -71,6 +73,32 @@ export const getLatestPosts = () => async (dispatch) => {
     dispatch({
       type: actionTypes.GET_LATEST_POSTS,
       latest_posts: null,
+    });
+  }
+};
+
+export const getOutStandingPosts = () => async (dispatch) => {
+  try {
+    const response = await apiGetPostsLimit({
+      limitPost: 4,
+      order: ["star", "DESC"],
+    });
+    if (response?.data.err === 0) {
+      dispatch({
+        type: actionTypes.GET_OUTSTANDING_POSTS,
+        outstanding_posts: response.data.response?.rows,
+      });
+    } else {
+      dispatch({
+        type: actionTypes.GET_OUTSTANDING_POSTS,
+        msg: response.data.msg,
+        outstanding_posts: null,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: actionTypes.GET_OUTSTANDING_POSTS,
+      outstanding_posts: null,
     });
   }
 };

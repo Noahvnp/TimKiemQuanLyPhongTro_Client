@@ -64,81 +64,89 @@ const EditAccount = () => {
       <h1 className="w-full text-start text-3xl font-medium py-4 border-b border-gray-200">
         Cập nhật thông tin cá nhân
       </h1>
-      <div className="w-3/5 py-6">
-        <div className=" flex flex-col gap-6 justify-center">
-          <InputReadOnly
-            label="Mã thành viên"
-            value={
-              `#${current_user?.id?.match(/\d/g)?.join("")?.slice(0, 6)}` || ""
-            }
-            flexRow
-          />
-          <InputReadOnly
-            label="Số điện thoại"
-            value={current_user?.phone}
-            flexRow
-            editPhone
-          />
-          <InputFormV2
-            name="name"
-            label="Tên hiển thị"
-            setValue={setPayload}
-            value={payload.name}
-            flexRow
-          />
-          <InputFormV2
-            name="zalo"
-            label="Zalo"
-            setValue={setPayload}
-            value={payload.zalo}
-            flexRow
-          />
-          <InputFormV2
-            name="fbUrl"
-            label="Facebook"
-            setValue={setPayload}
-            value={payload.fbUrl}
-            flexRow
-          />
+      {current_user && Object.keys(current_user).length > 0 ? (
+        <div className="w-3/5 py-6">
+          <div className=" flex flex-col gap-6 justify-center">
+            <InputReadOnly
+              label="Mã thành viên"
+              value={
+                `#${current_user?.id?.match(/\d/g)?.join("")?.slice(0, 6)}` ||
+                ""
+              }
+              flexRow
+            />
+            <InputReadOnly
+              label="Số điện thoại"
+              value={current_user?.phone}
+              flexRow
+              editPhone
+            />
+            <InputFormV2
+              name="name"
+              label="Tên hiển thị"
+              setValue={setPayload}
+              value={payload.name}
+              flexRow
+            />
+            <InputFormV2
+              name="zalo"
+              label="Zalo"
+              setValue={setPayload}
+              value={payload.zalo}
+              flexRow
+            />
+            <InputFormV2
+              name="fbUrl"
+              label="Facebook"
+              setValue={setPayload}
+              value={payload.fbUrl}
+              flexRow
+            />
 
-          <div className="flex gap-2`">
-            <label htmlFor="password" className="w-[25%] flex-none">
-              Mật khẩu
-            </label>
-            <small className="flex-auto h-12 p-2 text-blue-500 cursor-pointer">
-              Đổi mật khẩu
-            </small>
-          </div>
-
-          <div className="flex gap-2 mb-8">
-            <label htmlFor="avatar" className="w-[25%] flex-none">
-              Ảnh đại diện
-            </label>
-            <div className="flex justify-center items-center gap-6">
-              <img
-                src={payload.avatar || nonAvatar}
-                alt="avatar"
-                className="w-28 h-28 object-cover rounded-full"
-              />
-              <input
-                type="file"
-                id="avatar"
-                onChange={handleUploadFile}
-                className="appearance-none my-4"
-              />
-              {isLoading && <Loading />}
+            <div className="flex items-center gap-2">
+              <label
+                htmlFor="password"
+                className="w-[25%] flex-none font-medium"
+              >
+                Mật khẩu
+              </label>
+              <small className="flex-auto h-12 p-2 text-blue-500 cursor-pointer">
+                Đổi mật khẩu
+              </small>
             </div>
-          </div>
 
-          <Button
-            text="Cập nhật"
-            bgColor="bg-blue-600"
-            textColor="text-white"
-            fontSz={"font-medium"}
-            onClick={handleSubmit}
-          />
+            <div className="flex items-center gap-2 mb-8">
+              <label htmlFor="avatar" className="w-[25%] flex-none font-medium">
+                Ảnh đại diện
+              </label>
+              <div className="flex justify-center items-center gap-6">
+                <img
+                  src={payload.avatar || nonAvatar}
+                  alt="avatar"
+                  className="w-28 h-28 object-cover rounded-full"
+                />
+                <input
+                  type="file"
+                  id="avatar"
+                  onChange={handleUploadFile}
+                  className="appearance-none my-4"
+                />
+                {isLoading && <Loading />}
+              </div>
+            </div>
+
+            <Button
+              text="Cập nhật"
+              bgColor="bg-blue-600"
+              textColor="text-white"
+              fontSz={"font-medium"}
+              onClick={handleSubmit}
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

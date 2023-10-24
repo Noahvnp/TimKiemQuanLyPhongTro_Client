@@ -61,3 +61,31 @@ input[type="range"]::-ms-thumb {
   cursor: pointer;
   pointer-events: auto !important;
 }
+
+button.slick-arrow::before {
+  font-size: 44px !important;
+  color: #febb02 !important;
+}
+
+.slick-next {
+  right: 35px !important;
+  top: 45% !important;
+}
+
+.slick-prev {
+  left: 10px !important;
+  z-index: 10 !important;
+  top: 45% !important;
+}
+
+@keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  100% {
+    -webkit-transform: translateX(100px);
+    transform: translateX(100px);
+  }
+}

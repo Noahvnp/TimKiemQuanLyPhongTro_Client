@@ -14,7 +14,7 @@ const InputFormV2 = ({
   setInvalidFields,
 }) => {
   return (
-    <div className={`flex ${flexRow ? "" : "flex-col"} gap-2`}>
+    <div className={`flex ${flexRow ? "items-center" : "flex-col"} gap-2`}>
       <label
         htmlFor={formatVietnameseToString(label)}
         className="w-[25%] flex-none font-medium"

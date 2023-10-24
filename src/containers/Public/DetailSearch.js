@@ -36,6 +36,7 @@ const DetailSearch = () => {
             type={"acreageCode"}
             isDouble={true}
           />
+          <RelatedPost outstandingPosts />
           <RelatedPost />
         </div>
       </div>

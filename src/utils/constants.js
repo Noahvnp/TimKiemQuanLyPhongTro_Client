@@ -9,12 +9,14 @@ export const Path = {
   NHA_CHO_THUE: "nha-cho-thue",
   CHO_THUE_PHONG_TRO: "cho-thue-phong-tro",
   DETAIL_POST__TITLE__POSTID: "chi-tiet/:title/:postId",
+  DETAIL_ALL: "chi-tiet/*",
   DETAIL_SEARCH: "tim-kiem",
 
   SYSTEM: "/he-thong/*",
   CREATE_POST: "tao-moi-bai-dang",
   MANAGE_POST: "quan-ly-bai-dang",
   EDIT_ACCOUNT: "sua-thong-tin-ca-nhan",
+  CONTACT: "lien-he",
 };
 
 export const textHomeContent = {
@@ -27,13 +29,16 @@ export const location = [
   {
     name: "Phòng trọ Hồ Chí Minh ",
     image: "https://phongtro123.com/images/location_hcm.jpg",
+    code: "CHMN",
   },
   {
     name: "Phòng trọ Hà Nội",
     image: "https://phongtro123.com/images/location_hn.jpg",
+    code: "NNIT",
   },
   {
     name: "Phòng trọ Đà Nẵng",
     image: "https://phongtro123.com/images/location_dn.jpg",
+    code: "NONG",
   },
 ];

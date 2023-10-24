@@ -1,30 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import PostSidebar from "./PostSidebar";
 
 import * as actions from "../store/actions";
 
-const RelatedPost = () => {
+const RelatedPost = ({ outstandingPosts }) => {
   const dispatch = useDispatch();
-  const { latest_posts } = useSelector((state) => state.post);
+
+  const { latest_posts, outstanding_posts } = useSelector(
+    (state) => state.post
+  );
+
+  const [posts, setPosts] = useState({});
+
   useEffect(() => {
-    dispatch(actions.getLatestPosts());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    outstandingPosts
+      ? dispatch(actions.getOutStandingPosts())
+      : dispatch(actions.getLatestPosts());
   }, []);
+
+  useEffect(() => {
+    outstandingPosts ? setPosts(outstanding_posts) : setPosts(latest_posts);
+  }, [latest_posts, outstanding_posts]);
 
   return (
     <div className="w-full p-4 bg-white border border-gray-300 shadow-sm rounded-md">
-      <h3 className="font-medium text-lg mb-4">Tin mới đăng</h3>
+      <h3 className="font-medium text-lg mb-4">
+        {!outstandingPosts ? "Tin mới đăng" : "Tin nổi bật"}
+      </h3>
       <div className="w-full flex flex-col gap-2">
-        {latest_posts?.length > 0 &&
-          latest_posts.map((new_post) => (
+        {posts?.length > 0 &&
+          posts.map((post) => (
             <PostSidebar
-              key={new_post.id}
-              title={new_post.title}
-              image={JSON.parse(new_post?.images?.image)}
-              price={new_post.attributes.price}
-              createdAt={new_post.createdAt}
+              key={post.id}
+              title={post.title}
+              image={JSON.parse(post?.images?.image)}
+              star={post.star}
+              price={post.attributes.price}
+              createdAt={post.overviews.createdAt}
             />
           ))}
       </div>

@@ -6,7 +6,12 @@ const Province = () => {
   return (
     <div className="flex items-center gap-5 justify-center py-5">
       {location.map((item) => (
-        <ProvinceBtn key={item.name} name={item.name} image={item.image} />
+        <ProvinceBtn
+          key={item.name}
+          name={item.name}
+          image={item.image}
+          provinceCode={item.code}
+        />
       ))}
     </div>
   );
