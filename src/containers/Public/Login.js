@@ -12,14 +12,17 @@ const Login = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { isLoggedIn, msg, update } = useSelector((state) => state.auth);
   const [isRegister, setIsRegister] = useState(location.state?.flag);
+
   const [invalidFields, setInvalidFields] = useState([]);
   const [payload, setPayload] = useState({
     phone: "",
     password: "",
     name: "",
   });
+
   useEffect(() => {
     setIsRegister(location.state?.flag);
     // isRegister ? navigate("/register") : navigate("/login");
@@ -30,7 +33,10 @@ const Login = () => {
   }, [isLoggedIn, navigate]);
 
   useEffect(() => {
-    msg && Swl.fire("Oops!", msg, "error");
+    msg &&
+      Swl.fire("Oops!", msg, "notice").then((result) => {
+        if (result.isConfirmed) dispatch(actions.resetMsg());
+      });
   }, [msg, update]);
 
   const handleSubmit = async () => {

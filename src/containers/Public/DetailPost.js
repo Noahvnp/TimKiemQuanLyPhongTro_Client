@@ -28,7 +28,6 @@ const DetailPost = () => {
 
   const { posts } = useSelector((state) => state.post);
 
-  console.log(posts);
   const dispatch = useDispatch();
 
   useEffect(() => {

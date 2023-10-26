@@ -18,6 +18,15 @@ import {
   System,
 } from "./containers/System";
 
+import {
+  Admin,
+  Dashboard,
+  LoginAdmin,
+  Posts,
+  Profile,
+  Users,
+} from "./containers/Admin";
+
 import { Path } from "./utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -44,6 +53,7 @@ function App() {
   return (
     <div className="bg-primary overflow-hidden">
       <Routes>
+        {/* Dành cho khách vãng lai */}
         <Route path={Path.HOME} element={<Home />}>
           <Route path="*" element={<HomePage />} />
           <Route path={Path.LOGIN} element={<Login />} />
@@ -59,10 +69,23 @@ function App() {
           />
           <Route path={Path.DETAIL_ALL} element={<DetailPost />} />
         </Route>
+
+        {/* Dành cho người dùng có tài khoản */}
         <Route path={Path.SYSTEM} element={<System />}>
+          <Route path="*" element={<ManagePost />} />
           <Route path={Path.CREATE_POST} element={<CreatePost />} />
           <Route path={Path.MANAGE_POST} element={<ManagePost />} />
           <Route path={Path.EDIT_ACCOUNT} element={<EditAccount />} />
+        </Route>
+
+        {/* Dùng cho quản trị viên */}
+        <Route path={Path.ADMIN} element={<Admin />}>
+          <Route path={Path.LOGIN_ADMIN} element={<LoginAdmin />} />
+          <Route path="*" element={<Dashboard />} />
+          <Route path={Path.DASHBOARD} element={<Dashboard />} />
+          <Route path={Path.POSTS_ADMIN} element={<Posts />} />
+          <Route path={Path.USERS_ADMIN} element={<Users />} />
+          <Route path={Path.PROFILE_ADMIN} element={<Profile />} />
         </Route>
       </Routes>
     </div>
