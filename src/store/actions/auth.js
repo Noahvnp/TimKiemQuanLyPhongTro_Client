@@ -1,5 +1,9 @@
 import actionTypes from "./actionTypes";
-import { apiLogin, apiRegister } from "../../services/authService";
+import {
+  apiLogin,
+  apiLoginAdmin,
+  apiRegister,
+} from "../../services/authService";
 
 export const register = (payload) => async (dispatch) => {
   try {
@@ -45,6 +49,33 @@ export const login = (payload) => async (dispatch) => {
   }
 };
 
+export const loginAdmin = (payload) => async (dispatch) => {
+  try {
+    const response = await apiLoginAdmin(payload);
+    if (response?.data.err === 0) {
+      dispatch({
+        type: actionTypes.LOGIN_ADMIN,
+        data: response.data.token,
+      });
+    } else {
+      dispatch({
+        type: actionTypes.LOGIN_FAIL,
+        msg: response.data.msg,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: actionTypes.LOGIN_FAIL,
+      data: null,
+    });
+  }
+};
+
 export const logout = () => ({
   type: actionTypes.LOGOUT,
+});
+
+export const resetMsg = () => ({
+  type: actionTypes.RESET_MSG,
+  msg: "",
 });

@@ -17,6 +17,13 @@ export const Path = {
   MANAGE_POST: "quan-ly-bai-dang",
   EDIT_ACCOUNT: "sua-thong-tin-ca-nhan",
   CONTACT: "lien-he",
+
+  ADMIN: "/admin/*",
+  LOGIN_ADMIN: "login",
+  DASHBOARD: "dashboard",
+  POSTS_ADMIN: "posts",
+  USERS_ADMIN: "users",
+  PROFILE_ADMIN: "profile",
 };
 
 export const textHomeContent = {

@@ -13,8 +13,6 @@ import { Path } from "../../utils/constants";
 const { GrLinkTop } = icons;
 
 const Home = () => {
-  const { isLoggedIn } = useSelector((state) => state.auth);
-
   const location = useLocation();
 
   return (
@@ -22,7 +20,8 @@ const Home = () => {
       <Header />
       <Navigation />
       {location.pathname !== `/${Path.CONTACT}` &&
-        !location.pathname?.includes("/chi-tiet/") && <Search />}
+        !location.pathname?.includes("/chi-tiet/") &&
+        !location.pathname?.includes("/login") && <Search />}
       <div className="w-4/5 lg:w-3/5 flex flex-col items-start justify start mt-3">
         <Outlet />
       </div>
