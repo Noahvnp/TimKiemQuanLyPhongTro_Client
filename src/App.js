@@ -22,9 +22,9 @@ import {
   Admin,
   Dashboard,
   LoginAdmin,
-  Posts,
+  ManagePosts,
   Profile,
-  Users,
+  ManageUsers,
 } from "./containers/Admin";
 
 import { Path } from "./utils/constants";
@@ -73,7 +73,10 @@ function App() {
         {/* Dành cho người dùng có tài khoản */}
         <Route path={Path.SYSTEM} element={<System />}>
           <Route path="*" element={<ManagePost />} />
-          <Route path={Path.CREATE_POST} element={<CreatePost />} />
+          <Route
+            path={Path.CREATE_POST}
+            element={<CreatePost isEdit={false} />}
+          />
           <Route path={Path.MANAGE_POST} element={<ManagePost />} />
           <Route path={Path.EDIT_ACCOUNT} element={<EditAccount />} />
         </Route>
@@ -83,8 +86,8 @@ function App() {
           <Route path={Path.LOGIN_ADMIN} element={<LoginAdmin />} />
           <Route path="*" element={<Dashboard />} />
           <Route path={Path.DASHBOARD} element={<Dashboard />} />
-          <Route path={Path.POSTS_ADMIN} element={<Posts />} />
-          <Route path={Path.USERS_ADMIN} element={<Users />} />
+          <Route path={Path.POSTS_ADMIN} element={<ManagePosts />} />
+          <Route path={Path.USERS_ADMIN} element={<ManageUsers />} />
           <Route path={Path.PROFILE_ADMIN} element={<Profile />} />
         </Route>
       </Routes>

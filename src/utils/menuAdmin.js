@@ -12,19 +12,19 @@ const menuAdmin = [
   },
   {
     id: 2,
-    text: "Danh sách tin đăng",
+    text: "Quản lý tin đăng",
     path: `/admin/${Path.POSTS_ADMIN}`,
     icon: <MdOutlineLibraryBooks />,
   },
   {
     id: 3,
-    text: "Danh sách người dùng",
+    text: "Quản lý người dùng",
     path: `/admin/${Path.USERS_ADMIN}`,
     icon: <BiUserPin />,
   },
   {
     id: 4,
-    text: "Thông tin admin",
+    text: "Thông tin cá nhân",
     path: `/admin/${Path.PROFILE_ADMIN}`,
     icon: <BiUserPin />,
   },

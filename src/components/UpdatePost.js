@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { CreatePost } from "../containers/System";
 
@@ -21,4 +21,4 @@ const UpdatePost = ({ setIsEdit, isEdit }) => {
   );
 };
 
-export default UpdatePost;
+export default memo(UpdatePost);

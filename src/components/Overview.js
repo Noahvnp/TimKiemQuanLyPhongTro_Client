@@ -14,6 +14,8 @@ const Overview = ({ payload, setPayload, invalidFields, setInvalidFields }) => {
   const { current_user } = useSelector((state) => state.user);
   const { dataEdit } = useSelector((state) => state.post);
 
+  console.log(payload);
+
   return (
     <div>
       <h2 className="font-bold text-xl py-4">Thông tin mô tả</h2>
@@ -48,7 +50,10 @@ const Overview = ({ payload, setPayload, invalidFields, setInvalidFields }) => {
             className="w-full outline-blue-300 border border-gray-300 p-2 rounded-md"
             value={payload?.description}
             onChange={(e) =>
-              setPayload((prev) => ({ ...prev, description: e.target.value }))
+              setPayload((prev) => ({
+                ...prev,
+                description: [e.target.value],
+              }))
             }
             onFocus={() => setInvalidFields([])}
           />

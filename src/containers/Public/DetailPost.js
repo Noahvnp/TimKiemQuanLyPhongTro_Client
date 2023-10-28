@@ -54,7 +54,9 @@ const DetailPost = () => {
       <div className="w-[70%] h-fit border border-gray-300 bg-white rounded-md">
         {posts && posts?.length > 0 && (
           <>
-            <SliderImageDetail images={JSON.parse(posts[0]?.images?.image)} />
+            <SliderImageDetail
+              images={JSON.parse(posts[0]?.images?.image) || {}}
+            />
             <div className="p-4">
               <h2 className="text-2xl font-bold text-red-600">
                 {posts[0]?.title}
@@ -98,6 +100,7 @@ const DetailPost = () => {
                   <h3 className="font-bold text-lg">Thông tin mô tả</h3>
                   <div className="flex flex-col gap-2 mt-2 text-[.9rem]">
                     {posts[0]?.description &&
+                      posts[0]?.description?.length > 0 &&
                       JSON.parse(posts[0].description)?.map((item, index) => (
                         <span key={index}>{item}</span>
                       ))}
