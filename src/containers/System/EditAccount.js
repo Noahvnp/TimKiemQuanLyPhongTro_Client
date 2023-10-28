@@ -17,12 +17,17 @@ const EditAccount = () => {
   const { current_user } = useSelector((state) => state.user);
 
   const [payload, setPayload] = useState({
-    name: current_user?.name,
+    name: current_user?.name || "",
     avatar: current_user?.avatar,
     zalo: current_user?.zalo || "",
     fbUrl: current_user?.fbUrl || "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isHide, setIsHide] = useState(true);
+
+  setTimeout(() => {
+    setIsHide(false);
+  }, 1000);
 
   const handleUploadFile = async (e) => {
     // const imageBase64 = await fileToBase64(e.target.files[0]);
@@ -64,7 +69,7 @@ const EditAccount = () => {
       <h1 className="w-full text-start text-3xl font-medium py-4 border-b border-gray-200">
         Cập nhật thông tin cá nhân
       </h1>
-      {current_user && Object.keys(current_user).length > 0 ? (
+      {current_user && Object.keys(current_user).length > 0 && !isHide ? (
         <div className="w-3/5 py-6">
           <div className=" flex flex-col gap-6 justify-center">
             <InputReadOnly

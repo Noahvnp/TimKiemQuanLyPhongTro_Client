@@ -1,4 +1,9 @@
-import { AiOutlinePlusCircle, AiOutlineLogout } from "react-icons/ai";
+import {
+  AiOutlinePlusCircle,
+  AiOutlineLogout,
+  AiFillEye,
+  AiFillWarning,
+} from "react-icons/ai";
 import {
   BsChevronRight,
   BsChevronDown,
@@ -26,10 +31,14 @@ import {
 
 import { RiHeartFill, RiHeartLine } from "react-icons/ri";
 import { SiZalo } from "react-icons/si";
+import { FiEdit } from "react-icons/fi";
+import { TbLock } from "react-icons/tb";
 
 const icons = {
   AiOutlinePlusCircle,
   AiOutlineLogout,
+  AiFillEye,
+  AiFillWarning,
   BsChevronRight,
   BsCameraFill,
   BsChevronDown,
@@ -57,6 +66,8 @@ const icons = {
   ImPencil2,
   ImBin,
   SiZalo,
+  FiEdit,
+  TbLock,
 };
 
 export default icons;
