@@ -19,12 +19,12 @@ const User = () => {
               Xin chào,{" "}
               <span className="font-semibold">{current_user?.name}</span>
             </span>
-            <small>
+            {/* <small>
               Mã tài khoản:{" "}
               <span className="font-semibold">
                 {current_user?.id?.match(/\d/g)?.join("")?.slice(0, 6)}
               </span>
-            </small>
+            </small> */}
           </div>
         </div>
       )}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
@@ -41,8 +41,8 @@ const CreatePost = ({ isEdit }) => {
   const [invalidFields, setInvalidFields] = useState([]);
 
   useEffect(() => {
-    resetPayload();
-  }, [isEdit]);
+    if (isEdit === false) resetPayload();
+  }, []);
 
   const resetPayload = () => {
     setPayload({
@@ -168,4 +168,4 @@ const CreatePost = ({ isEdit }) => {
   );
 };
 
-export default CreatePost;
+export default memo(CreatePost);

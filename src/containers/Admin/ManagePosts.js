@@ -13,19 +13,19 @@ import { Path } from "../../utils/constants";
 import icons from "../../utils/icons";
 import { formatVietnameseToString } from "../../utils/Common/formatVietnameseToString";
 
-const { FiEdit, ImBin, AiFillEye } = icons;
+const { AiFillWarning, TbLock, AiFillEye } = icons;
 
-const ManagePost = () => {
+const ManagePosts = () => {
   const dispatch = useDispatch();
 
-  const { posts_current_user, dataEdit } = useSelector((state) => state.post);
+  const { posts, dataEdit } = useSelector((state) => state.post);
 
   const [isEdit, setIsEdit] = useState(false);
   const [updateData, setUpdateData] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const [postsFilter, setPostsFilter] = useState([]);
 
   useEffect(() => {
-    !dataEdit && dispatch(actions.getPostsLimitAdmin());
+    !dataEdit && dispatch(actions.getPostsLimit({ limitPost: 20 }));
   }, [dataEdit, updateData]);
 
   useEffect(() => {
@@ -33,8 +33,8 @@ const ManagePost = () => {
   }, [dataEdit]);
 
   useEffect(() => {
-    setPosts(posts_current_user);
-  }, [posts_current_user]);
+    setPostsFilter(postsFilter);
+  }, [postsFilter]);
 
   const checkStatus = (dateString) =>
     moment(dateString, process.env.REACT_APP_FORMAT_DATE).isSameOrAfter(
@@ -49,16 +49,16 @@ const ManagePost = () => {
 
   const handleFilterByStatus = (statusCode) => {
     if (statusCode === 1) {
-      const activePost = posts_current_user?.filter((post) =>
+      const activePost = posts?.filter((post) =>
         checkStatus(post?.overviews?.expire?.split(" ")[3])
       );
-      setPosts(activePost);
+      setPostsFilter(activePost);
     } else if (statusCode === 0) {
-      const expiredPosts = posts_current_user?.filter(
+      const expiredPosts = posts?.filter(
         (post) => !checkStatus(post?.overviews?.expire?.split(" ")[3])
       );
-      setPosts(expiredPosts);
-    } else setPosts(posts_current_user);
+      setPostsFilter(expiredPosts);
+    } else setPostsFilter(posts);
   };
 
   return (
@@ -74,7 +74,7 @@ const ManagePost = () => {
           <option value="0">Đã hết hạn</option>
         </select>
       </div>
-      <table className="w-full table-fixed">
+      <table className="w-full table-fixed shadow-lg">
         {posts && posts.length > 0 && (
           <thead>
             <tr className=" bg-secondary1 text-white [&>*]:border [&>*]:p-1">
@@ -126,8 +126,8 @@ const ManagePost = () => {
                       target="_blank"
                     >
                       <Button
-                        IcTitle="Xem"
                         IcAfter={AiFillEye}
+                        IcTitle="Xem"
                         bgColor="bg-secondary1"
                         textColor="text-white"
                         px="px-3"
@@ -136,9 +136,9 @@ const ManagePost = () => {
                     </Link>
 
                     <Button
-                      IcTitle="Sửa"
-                      IcAfter={FiEdit}
-                      bgColor="bg-green-600"
+                      IcAfter={AiFillWarning}
+                      IcTitle="Cảnh báo"
+                      bgColor="bg-yellow-500"
                       textColor="text-white"
                       px="px-3"
                       noUnderline
@@ -148,13 +148,13 @@ const ManagePost = () => {
                       }}
                     />
                     <Button
-                      IcTitle="Xóa"
-                      IcAfter={ImBin}
+                      IcAfter={TbLock}
+                      IcTitle="Khóa"
                       bgColor="bg-secondary2"
                       textColor="text-white"
                       px="px-3"
                       noUnderline
-                      onClick={() => handleDeletePost(post.id)}
+                      // onClick={() => handleDeletePost(post.id)}
                     />
                   </div>
                 </td>
@@ -179,4 +179,4 @@ const ManagePost = () => {
   );
 };
 
-export default ManagePost;
+export default ManagePosts;

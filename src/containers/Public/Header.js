@@ -78,7 +78,7 @@ const Header = () => {
               onClick={() => setIsShowMenu((prev) => !prev)}
             />
             {isShowMenu && (
-              <div className="absolute min-w-200 top-full right-0 bg-white shadow-md rounded-md p-4 flex flex-col gap-2">
+              <div className="absolute min-w-200 top-full right-0 bg-white shadow-md rounded-md p-4 flex flex-col gap-2 z-20">
                 {menuManager.map((item) => (
                   <Link
                     to={item?.path}
