@@ -2,6 +2,7 @@ import authReducer from "./authReducer";
 import userReducer from "./userReducer";
 import postReducer from "./postReducer";
 import appReducer from "./appReducer";
+import rentalReducer from "./rentalReducer";
 
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   post: postReducer,
   app: appReducer,
+  rental: rentalReducer,
 });
 
 export default rootReducer;

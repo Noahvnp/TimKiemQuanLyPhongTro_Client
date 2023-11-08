@@ -65,3 +65,20 @@ export const apiGetVietNamDistricts = (province_id) =>
       reject(error);
     }
   });
+
+export const apiGetMapGoogle = (address) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `https://maps.googleapis.com/maps/api/geocode/json`,
+        params: {
+          address,
+          key: process.env.REACT_APP_MAP_API,
+        },
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });

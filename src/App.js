@@ -15,6 +15,7 @@ import {
   CreatePost,
   EditAccount,
   ManagePost,
+  ManageRenter,
   System,
 } from "./containers/System";
 
@@ -78,6 +79,7 @@ function App() {
             element={<CreatePost isEdit={false} />}
           />
           <Route path={Path.MANAGE_POST} element={<ManagePost />} />
+          <Route path={Path.MANAGE_RENTER} element={<ManageRenter />} />
           <Route path={Path.EDIT_ACCOUNT} element={<EditAccount />} />
         </Route>
 

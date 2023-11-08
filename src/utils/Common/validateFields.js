@@ -3,7 +3,7 @@ const validateFields = async (payload, setInvalidFields) => {
   let fields = Object.entries(payload); //Chuyển objects thành mảng như sau: [name, value]
   // Kiểm tra xem có trường nào bị bỏ trống không?
   fields.forEach((item) => {
-    if (item[1] === "") {
+    if (item[1] === "" || item[1] === null) {
       setInvalidFields((prev) => [
         ...prev,
         {
@@ -30,6 +30,7 @@ const validateFields = async (payload, setInvalidFields) => {
           invalidIndex++;
         }
         break;
+
       case "phone":
         if (!+item[1]) {
           //Kiểm tra xem phần tử có phải là kiểu số hay chưa: +item[1] ==> number
@@ -43,6 +44,7 @@ const validateFields = async (payload, setInvalidFields) => {
           invalidIndex++;
         }
         break;
+
       case "priceNumber":
       case "acreageNumber":
         if (isNaN(+item[1])) {
@@ -68,6 +70,19 @@ const validateFields = async (payload, setInvalidFields) => {
         }
         break;
 
+      case "yearOfBirth":
+        if (+item[1] > new Date().getFullYear()) {
+          //Kiểm tra xem phần tử có phải là kiểu số hay chưa: +item[1] ==> number
+          setInvalidFields((prev) => [
+            ...prev,
+            {
+              name: item[0],
+              message: "Năm sinh không hợp lệ!",
+            },
+          ]);
+          invalidIndex++;
+        }
+        break;
       default:
         break;
     }
