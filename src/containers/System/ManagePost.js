@@ -12,6 +12,7 @@ import { apiDeletePost } from "../../services";
 import { Path } from "../../utils/constants";
 import icons from "../../utils/icons";
 import { formatVietnameseToString } from "../../utils/Common/formatVietnameseToString";
+import RentersList from "./RentersList";
 
 const { FiEdit, ImBin, AiFillEye } = icons;
 
@@ -21,6 +22,7 @@ const ManagePost = () => {
   const { posts_current_user, dataEdit } = useSelector((state) => state.post);
 
   const [isEdit, setIsEdit] = useState(false);
+  const [showRenters, setShowRenters] = useState(false);
   const [updateData, setUpdateData] = useState(false);
   const [posts, setPosts] = useState([]);
 
@@ -85,6 +87,7 @@ const ManagePost = () => {
               <th>Ngày bắt đầu</th>
               <th>Ngày hết hạn</th>
               <th>Trạng thái</th>
+              <th>Danh sách đăng ký</th>
               <th>Tùy chọn</th>
             </tr>
           </thead>
@@ -116,6 +119,19 @@ const ManagePost = () => {
                   {checkStatus(post?.overviews?.expire?.split(" ")[3])
                     ? "Đang hoạt động"
                     : "Đã hết hạn"}
+                </td>
+                <td>
+                  <Button
+                    text="Xem người đăng kí"
+                    textColor="text-orange-500"
+                    fullWidth
+                    onClick={() => {
+                      dispatch(actions.getRenters(post.id));
+                      dispatch(actions.getPostsLimit({ id: post.id }));
+                      setTimeout(() => setShowRenters(true), 500);
+                      // setShowRenters(true);
+                    }}
+                  />
                 </td>
                 <td>
                   <div className="flex items-center justify-center gap-2">
@@ -174,6 +190,7 @@ const ManagePost = () => {
           )}
         </tbody>
       </table>
+      {showRenters && <RentersList setShowRenters={setShowRenters} />}
       {isEdit && <UpdatePost setIsEdit={setIsEdit} />}
     </div>
   );

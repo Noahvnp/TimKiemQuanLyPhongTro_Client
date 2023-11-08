@@ -23,3 +23,6 @@ export { default as Loading } from "./Loading";
 export { default as UpdatePost } from "./UpdatePost";
 export { default as SliderImageDetail } from "./SliderImageDetail";
 export { default as BoxInfo } from "./BoxInfo";
+export { default as RegisterModal } from "./RegisterModal";
+export { default as YearOfBirthInput } from "./YearOfBirthInput";
+export { default as Map } from "./Map";

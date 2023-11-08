@@ -1,6 +1,5 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import ScrollToTop from "react-scroll-to-top";
 
 import Header from "./Header";

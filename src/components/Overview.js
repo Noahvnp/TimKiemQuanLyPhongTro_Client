@@ -12,9 +12,6 @@ const objTargets = [
 const Overview = ({ payload, setPayload, invalidFields, setInvalidFields }) => {
   const { categories } = useSelector((state) => state.app);
   const { current_user } = useSelector((state) => state.user);
-  const { dataEdit } = useSelector((state) => state.post);
-
-  console.log(payload);
 
   return (
     <div>

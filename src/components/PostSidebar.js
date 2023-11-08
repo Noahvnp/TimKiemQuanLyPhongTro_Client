@@ -1,12 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/vi";
 
 import icons from "../utils/icons";
+import { formatVietnameseToString } from "../utils/Common/formatVietnameseToString";
 
 const { GrStar } = icons;
 
-const PostSidebar = ({ title, image, price, star, createdAt }) => {
+const PostSidebar = ({ postId, title, image, price, star, createdAt }) => {
   const handleStar = (star) => {
     let stars = [];
     for (let i = 1; i <= star; i++)
@@ -15,7 +17,12 @@ const PostSidebar = ({ title, image, price, star, createdAt }) => {
   };
 
   return (
-    <div className="w-full flex items-center gap-2 py-2 border-b border-gray-5000">
+    <Link
+      to={`/chi-tiet/${formatVietnameseToString(
+        title?.replace("/", "")
+      )}/${postId}`}
+      className="w-full flex items-center gap-2 py-2 border-b border-gray-5000"
+    >
       <img
         src={image[0]}
         alt="anh"
@@ -36,7 +43,7 @@ const PostSidebar = ({ title, image, price, star, createdAt }) => {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -2,6 +2,7 @@ import actionTypes from "../actions/actionTypes";
 
 const initState = {
   current_user: {},
+  users: {},
 };
 
 const userReducer = (state = initState, action) => {
@@ -10,6 +11,13 @@ const userReducer = (state = initState, action) => {
       return {
         ...state,
         current_user: action.current_user || {},
+        msg: action.msg || "",
+      };
+    case actionTypes.GET_ALL_USERS:
+      return {
+        ...state,
+        users: action.users || {},
+        msg: action.msg || "",
       };
     case actionTypes.LOGOUT:
       return {

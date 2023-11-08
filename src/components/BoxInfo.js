@@ -1,12 +1,21 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { Button, RegisterModal } from "../components/";
 
 import icons from "../utils/icons";
 import anonAvatar from "../assets/anon-avatar.png";
-import { Button } from "../components/";
 
 const { BsDot, BsTelephoneFill, SiZalo } = icons;
 
 const BoxInfo = ({ userData }) => {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+
+  const [isRegister, setIsRegister] = useState(false);
+
   return (
     <div className="bg-yellow-400  border border-gray-300 rounded-md flex flex-col items-center gap-2 p-4">
       <img
@@ -35,6 +44,16 @@ const BoxInfo = ({ userData }) => {
         {" "}
         <SiZalo color="blue" size={32} />
       </a>
+
+      <Button
+        text="Đăng kí ngay"
+        textColor="text-white"
+        fontSz="font-medium"
+        bgColor="bg-secondary1"
+        fullWidth
+        onClick={() => (isLoggedIn ? setIsRegister(true) : navigate("/login"))}
+      />
+      {isRegister && <RegisterModal setIsRegister={setIsRegister} />}
     </div>
   );
 };

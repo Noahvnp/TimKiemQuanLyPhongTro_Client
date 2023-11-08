@@ -3,9 +3,11 @@ import { createSearchParams, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getPostsLimit } from "../../store/actions";
+
 import {
   BoxInfo,
   Button,
+  Map,
   RelatedPost,
   SliderImageDetail,
 } from "../../components/";
@@ -166,7 +168,7 @@ const DetailPost = () => {
 
               <div className="mt-3">
                 <h3 className="font-bold text-lg">Bản đồ</h3>
-                <span className="mt-1 text-sm">{posts[0]?.address}</span>
+                {/* {posts && <Map address={posts[0]?.address} />} */}
               </div>
 
               <div className="my-6">

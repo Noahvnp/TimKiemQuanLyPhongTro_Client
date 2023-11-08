@@ -2,7 +2,7 @@ import React, { useState, useEffect, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
-import { Address, Button, Overview, UploadImage } from "../../components";
+import { Address, Button, Map, Overview, UploadImage } from "../../components";
 
 import { getGapsAcreages, getGapsPrices } from "../../utils/Common/getCodes";
 import validateFields from "../../utils/Common/validateFields";
@@ -162,7 +162,9 @@ const CreatePost = ({ isEdit }) => {
             onClick={handleSubmit}
           />
         </div>
-        <div className="w-[30%] flex-none">maps</div>
+        <div className="w-[30%] flex-none py-4">
+          <Map address={payload?.address} />
+        </div>
       </div>
     </div>
   );

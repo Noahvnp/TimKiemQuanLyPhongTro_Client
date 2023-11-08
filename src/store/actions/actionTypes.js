@@ -22,7 +22,10 @@ const actionTypes = {
   // USER
   GET_CURRENT_USER: "GET_CURRENT_USER",
 
+  GET_RENTERS_OF_POST: "GET_RENTERS_OF_POST",
+
   LOGIN_ADMIN: "LOGIN_ADMIN",
+  GET_ALL_USERS: "GET_ALL_USERS",
 };
 
 export default actionTypes;

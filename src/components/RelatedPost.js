@@ -34,6 +34,7 @@ const RelatedPost = ({ outstandingPosts }) => {
           posts.map((post) => (
             <PostSidebar
               key={post.id}
+              postId={post?.id}
               title={post.title}
               image={JSON.parse(post?.images?.image)}
               star={post.star}

@@ -1,14 +1,14 @@
 import { Path } from "./constants";
 import icons from "./icons";
 
-const { ImPencil2, MdOutlineLibraryBooks, BiUserPin } = icons;
+const { RxDashboard, MdOutlineLibraryBooks, BiUserPin, CgProfile } = icons;
 
 const menuAdmin = [
   {
     id: 1,
     text: "Tổng quan",
     path: `/admin/${Path.DASHBOARD}`,
-    icon: <ImPencil2 />,
+    icon: <RxDashboard />,
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const menuAdmin = [
     id: 4,
     text: "Thông tin cá nhân",
     path: `/admin/${Path.PROFILE_ADMIN}`,
-    icon: <BiUserPin />,
+    icon: <CgProfile />,
   },
 ];
 
