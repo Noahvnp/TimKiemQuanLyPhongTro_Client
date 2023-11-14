@@ -88,10 +88,6 @@ const validateFields = async (payload, setInvalidFields) => {
           invalidIndex++;
         }
         break;
-<<<<<<< HEAD
-
-=======
->>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
       default:
         break;
     }
