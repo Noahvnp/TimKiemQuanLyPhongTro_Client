@@ -79,12 +79,8 @@ function App() {
             element={<CreatePost isEdit={false} />}
           />
           <Route path={Path.MANAGE_POST} element={<ManagePost />} />
-<<<<<<< HEAD
           {/* <Route path={Path.MANAGE_RENTER} element={<ManageRenter />} /> */}
           <Route path={Path.CREATE_CONTRACT} element={<ManageRenter />} />
-=======
-          <Route path={Path.MANAGE_RENTER} element={<ManageRenter />} />
->>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
           <Route path={Path.EDIT_ACCOUNT} element={<EditAccount />} />
         </Route>
 

@@ -24,11 +24,6 @@ export { default as UpdatePost } from "./UpdatePost";
 export { default as SliderImageDetail } from "./SliderImageDetail";
 export { default as BoxInfo } from "./BoxInfo";
 export { default as RegisterModal } from "./RegisterModal";
-<<<<<<< HEAD
 export { default as DateInput } from "./DateInput";
 export { default as Map } from "./Map";
 export { default as CreateRoom } from "./CreateRoom";
-=======
-export { default as YearOfBirthInput } from "./YearOfBirthInput";
-export { default as Map } from "./Map";
->>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
