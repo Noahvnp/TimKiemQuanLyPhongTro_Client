@@ -2,7 +2,11 @@ import React, { memo, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
+<<<<<<< HEAD
 import { InputForm, Button, Select, DateInput } from "../components";
+=======
+import { InputForm, Button, Select, YearOfBirthInput } from "../components";
+>>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
 
 import validateFields from "../utils/Common/validateFields";
 import { apiGetVietNamProvinces, apiRental } from "../services";
@@ -52,6 +56,10 @@ function RegisterModal({ setIsRegister }) {
       }`,
     }));
   }, [province, provinces]);
+<<<<<<< HEAD
+=======
+  console.log(payload.homnetown);
+>>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
 
   const hanldeSubmit = async () => {
     const invalidIndex = await validateFields(payload, setInvalidFields);
@@ -107,10 +115,14 @@ function RegisterModal({ setIsRegister }) {
                 invalidFields={invalidFields}
                 setInvalidFields={setInvalidFields}
               />
+<<<<<<< HEAD
               <DateInput
                 label="Năm sinh"
                 type="year"
                 name="yearOfBirth"
+=======
+              <YearOfBirthInput
+>>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
                 setValue={setPayload}
                 value={payload?.yearOfBirth}
                 invalidFields={invalidFields}

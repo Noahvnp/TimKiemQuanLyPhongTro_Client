@@ -3,9 +3,12 @@ import actionTypes from "../actions/actionTypes";
 const initState = {
   renters: {},
   msg: "",
+<<<<<<< HEAD
   count: 0,
   reGetRoom: false,
   reGetRenter: false,
+=======
+>>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
 };
 
 const rentalReducer = (state = initState, action) => {
@@ -15,6 +18,7 @@ const rentalReducer = (state = initState, action) => {
         ...state,
         renters: action.renters || {},
         msg: action.msg || "",
+<<<<<<< HEAD
         count: action.count || 0,
       };
 
@@ -29,6 +33,10 @@ const rentalReducer = (state = initState, action) => {
         ...state,
         reGetRenter: true,
       };
+=======
+      };
+
+>>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
     default:
       return state;
   }
