@@ -15,21 +15,13 @@ export const apiRental = (payload, postId) =>
     }
   });
 
-<<<<<<< HEAD
 export const apiGetRenter = (query) =>
-=======
-export const apiGetRenter = (postId) =>
->>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
   new Promise(async (resolve, reject) => {
     try {
       const response = await axiosConfig({
         method: "GET",
         url: "api/v1/rental/renter",
-<<<<<<< HEAD
         params: query,
-=======
-        params: { postId },
->>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
       });
       resolve(response);
     } catch (error) {
@@ -50,7 +42,6 @@ export const apiAcceptRenter = (renterId) =>
       reject(error);
     }
   });
-<<<<<<< HEAD
 
 export const apiCreateRoom = (payload) =>
   new Promise(async (resolve, reject) => {
@@ -93,5 +84,3 @@ export const apiCreateContract = (payload) =>
       reject(error);
     }
   });
-=======
->>>>>>> 6641730968f58f96e894e99fc326e9a0079faf8c
