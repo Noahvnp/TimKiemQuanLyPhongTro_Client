@@ -10,13 +10,13 @@ const Select = ({
   value,
   setValue,
   reset,
+  small,
   invalidFields,
   setInvalidFields,
 }) => {
   const handleErrorText = () => {
     let nameInvalid = invalidFields?.find((field) => field.name === name);
     let addressInvalid = invalidFields?.find(
-      // (field) => field.name === "address" || field.name === "homnetown"
       (field) => field.name === "address"
     );
 
@@ -38,7 +38,6 @@ const Select = ({
         className="outline-none border border-gray-300 p-2 rounded-md w-full"
         value={!reset ? value : ""}
         onChange={(e) =>
-          // name !== "address" || name !== "homnetown"
           name
             ? setValue((prev) => ({ ...prev, [name]: e.target.value }))
             : setValue(e.target.value)
@@ -71,6 +70,7 @@ const Select = ({
           </option>
         ))}
       </select>
+      {small && <small className="opacity-80 italic px-1">{small}</small>}
       {handleErrorText()}
     </div>
   );

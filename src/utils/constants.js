@@ -16,6 +16,7 @@ export const Path = {
   CREATE_POST: "tao-moi-bai-dang",
   MANAGE_POST: "quan-ly-bai-dang",
   MANAGE_RENTER: "quan-ly-nguoi-thue",
+  CREATE_CONTRACT: "tao-hop-dong",
   EDIT_ACCOUNT: "sua-thong-tin-ca-nhan",
   CONTACT: "lien-he",
 

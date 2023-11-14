@@ -24,7 +24,7 @@ const Sidebar = () => {
     <div className="w-[256px] flex-none px-4 py-8 bg-secondary1">
       {current_user && Object.keys(current_user).length > 0 && (
         <div className="flex flex-col items-center gap-4">
-          <h2 className="font-bold text-white">Admin Phongtro123</h2>
+          <h2 className="font-bold text-white">Admin PhongTroTot</h2>
           <div className="flex items-center gap-4">
             <img
               src={current_user?.avatar || anonAvatar}

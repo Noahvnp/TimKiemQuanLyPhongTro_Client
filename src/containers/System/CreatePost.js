@@ -41,7 +41,10 @@ const CreatePost = ({ isEdit }) => {
   const [invalidFields, setInvalidFields] = useState([]);
 
   useEffect(() => {
-    if (isEdit === false) resetPayload();
+    if (isEdit === false) {
+      resetPayload();
+      dispatch(resetDataEdit());
+    }
   }, []);
 
   const resetPayload = () => {

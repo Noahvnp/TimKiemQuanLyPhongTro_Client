@@ -47,6 +47,11 @@ const validateFields = async (payload, setInvalidFields) => {
 
       case "priceNumber":
       case "acreageNumber":
+      case "electrictCost":
+      case "waterCost":
+      case "depositAmount":
+      case "monthlyRent":
+      case "amount":
         if (isNaN(+item[1])) {
           //Kiểm tra xem phần tử có phải là kiểu số hay chưa: +item[1] ==> number
           setInvalidFields((prev) => [
@@ -83,6 +88,7 @@ const validateFields = async (payload, setInvalidFields) => {
           invalidIndex++;
         }
         break;
+
       default:
         break;
     }

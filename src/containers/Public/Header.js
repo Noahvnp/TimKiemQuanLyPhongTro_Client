@@ -45,13 +45,13 @@ const Header = () => {
         <img
           src={logo}
           alt="logo"
-          className="w-[240px] h-[70px] object-contain"
+          className="w-[280px] h-[70px] object-contain ml-[-26px] my-1"
         />
       </Link>
       <div className="flex items-center gap-1">
         {!isLoggedIn && (
           <div className="flex items-center gap-1">
-            <small>Phongtro123.com xin chào!</small>
+            <small>PhongTroTot xin chào!</small>
             <Button
               text={"Đăng nhập"}
               textColor="text-white"

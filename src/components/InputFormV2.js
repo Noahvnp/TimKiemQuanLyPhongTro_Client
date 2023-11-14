@@ -17,7 +17,7 @@ const InputFormV2 = ({
     <div className={`flex ${flexRow ? "items-center" : "flex-col"} gap-2`}>
       <label
         htmlFor={formatVietnameseToString(label)}
-        className="w-[25%] flex-none font-medium"
+        className={`${!flexRow ? "w-full" : "w-[25%]"} flex-none font-medium`}
       >
         {label}
       </label>

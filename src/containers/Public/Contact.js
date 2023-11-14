@@ -32,15 +32,12 @@ const Contact = () => {
           <h4 className="text-xl font-medium">Thông tin liên hệ</h4>
           <span>
             Chúng tôi biết bạn có rất nhiều sự lựa chọn. Nhưng cảm ơn vì đã lựa
-            chọn PhongTro123.Com
+            chọn PhongTroTot.Com
           </span>
           <span>Điện thoại: 0917 686 101</span>
-          <span>Email: cskh.phongtro123@gmail.com Zalo: 0917 686 101</span>
+          <span>Email: cskh.phongtrotot@gmail.com Zalo: 0123 123 123</span>
           <span>Viber: 0917 686 101</span>
-          <span>
-            Địa chỉ: LD - 02.06, Toà nhà Lexington Residence, Số 67 Mai Chí Thọ,
-            Phường An Phú, Quận 2, Tp. Hồ Chí Minh.
-          </span>
+          <span>Địa chỉ: Xuân Khánh, Ninh Kiều, Cần Thơ</span>
         </div>
 
         <div className="flex-1 bg-white border border-gray-300 shadow-md rounded-lg p-6">
