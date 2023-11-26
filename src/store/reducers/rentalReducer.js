@@ -2,6 +2,10 @@ import actionTypes from "../actions/actionTypes";
 
 const initState = {
   renters: {},
+  contracts: [],
+  payments: [],
+  your_payment: [],
+  paymentId: "id",
   msg: "",
   count: 0,
   reGetRoom: false,
@@ -16,6 +20,36 @@ const rentalReducer = (state = initState, action) => {
         renters: action.renters || {},
         msg: action.msg || "",
         count: action.count || 0,
+      };
+
+    case actionTypes.GET_CONTRACT_OF_POST:
+      return {
+        ...state,
+        contracts: action.contracts || [],
+        msg: action.msg || "",
+        count: action.count || 0,
+      };
+
+    case actionTypes.GET_PAYMENTS:
+      return {
+        ...state,
+        payments: action.payments || [],
+        msg: action.msg || "",
+        count: action.count || 0,
+      };
+
+    case actionTypes.GET_YOUR_PAYMENTS:
+      return {
+        ...state,
+        your_payment: action.your_payment || [],
+        msg: action.msg || "",
+        count: action.count || 0,
+      };
+
+    case actionTypes.VERIFY_PAYMENT:
+      return {
+        ...state,
+        paymentId: action.paymentId || null,
       };
 
     case actionTypes.NEW_ROOM:

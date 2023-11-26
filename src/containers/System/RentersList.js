@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import moment from "moment";
 
-import { Button, Loading } from "../../components";
+import { Button, CloseBtn } from "../../components";
 
 import icons from "../../utils/icons";
 
-import * as actions from "../../store/actions";
 import { apiAcceptRenter, apiGetRenter } from "../../services";
 
 const {
@@ -20,8 +19,6 @@ const {
 } = icons;
 
 const RentersList = ({ setShowRenters }) => {
-  const dispatch = useDispatch();
-
   const { renters } = useSelector((state) => state.rental);
   const { posts } = useSelector((state) => state.post);
 
@@ -36,8 +33,10 @@ const RentersList = ({ setShowRenters }) => {
 
   const handleAccepter = async (renterId) => {
     const response = await apiAcceptRenter(renterId);
-    if (response.statusCode === 200)
-      dispatch(actions.getRenters({ postId: posts[0]?.id }));
+    if (response?.data?.err === 0) {
+      // dispatch(actions.getRenters({ postId: posts[0]?.id }));
+      await setShowRenters(false);
+    }
   };
 
   useEffect(() => {
@@ -79,13 +78,7 @@ const RentersList = ({ setShowRenters }) => {
           <div className="p-6">
             <h1 className="text-3xl font-medium py-2 border-b border-gray-200 flex justify-between items-center">
               Danh sách đăng ký thuê
-              <span
-                title="Đóng"
-                className="bg-gray-300 rounded-md cursor-pointer"
-                onClick={() => setShowRenters(false)}
-              >
-                <MdClose color="red" size={30} />
-              </span>
+              <CloseBtn setShow={setShowRenters} />
             </h1>
             <div className="mt-2 p-3">
               <h3 className="text-lg font-medium">

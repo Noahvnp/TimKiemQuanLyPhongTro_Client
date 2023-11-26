@@ -4,9 +4,11 @@ import icons from "./icons";
 const {
   ImPencil2,
   MdOutlineLibraryBooks,
+  MdOutlinePayments,
   BiUserPin,
   GrContact,
-  PiUserListFill,
+  BsJournals,
+  BsJournalPlus,
 } = icons;
 
 const menuSidebar = [
@@ -17,6 +19,12 @@ const menuSidebar = [
     icon: <ImPencil2 />,
   },
   {
+    id: 4,
+    text: "Tạo hợp đồng",
+    path: `/he-thong/${Path.CREATE_CONTRACT}`,
+    icon: <BsJournalPlus />,
+  },
+  {
     id: 2,
     text: "Quản lý tin đăng",
     path: `/he-thong/${Path.MANAGE_POST}`,
@@ -25,23 +33,24 @@ const menuSidebar = [
   {
     id: 3,
     text: "Quản lý hợp đồng",
-    path: `/he-thong/${Path.MANAGE_RENTER}`,
-    icon: <PiUserListFill />,
+    path: `/he-thong/${Path.MANAGE_CONTRACT}`,
+    icon: <BsJournals />,
   },
-  {
-    id: 4,
-    text: "Tạo hợp đồng",
-    path: `/he-thong/${Path.CREATE_CONTRACT}`,
-    icon: <PiUserListFill />,
-  },
+
   {
     id: 5,
+    text: " Quản lý thanh toán",
+    path: `/he-thong/${Path.MANAGE_PAYMENT}`,
+    icon: <MdOutlinePayments />,
+  },
+  {
+    id: 6,
     text: "Sửa thông tin cá nhân",
     path: `/he-thong/${Path.EDIT_ACCOUNT}`,
     icon: <BiUserPin />,
   },
   {
-    id: 6,
+    id: 7,
     text: "Liên hệ",
     path: "/lien-he",
     icon: <GrContact />,

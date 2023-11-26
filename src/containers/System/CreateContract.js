@@ -39,7 +39,6 @@ const CreateContract = ({ users, roomsList, postId }) => {
   const [payload, setPayload] = useState({
     customer: "",
     room: "",
-    price: "",
     depositAmount: "",
     electrictCost: "",
     waterCost: "",
@@ -158,8 +157,6 @@ const CreateContract = ({ users, roomsList, postId }) => {
         Swal.fire("Oops!", response?.data?.msg, "error");
       }
     }
-
-    console.log(finalPayload);
   };
 
   return (
@@ -379,7 +376,7 @@ const CreateContract = ({ users, roomsList, postId }) => {
               setInvalidFields={setInvalidFields}
               payload={room}
               setPayload={setRoom}
-              onClick={() => handleCreateRoom(postRenter?.id)}
+              onClick={handleCreateRoom}
             />
           </>
         )}

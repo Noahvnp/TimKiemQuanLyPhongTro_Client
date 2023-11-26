@@ -14,8 +14,12 @@ import {
 import {
   CreatePost,
   EditAccount,
+  ManageContract,
+  ManagePayment,
   ManagePost,
   ManageRenter,
+  PaymentStatus,
+  Payment,
   System,
 } from "./containers/System";
 
@@ -81,6 +85,10 @@ function App() {
           <Route path={Path.MANAGE_POST} element={<ManagePost />} />
           {/* <Route path={Path.MANAGE_RENTER} element={<ManageRenter />} /> */}
           <Route path={Path.CREATE_CONTRACT} element={<ManageRenter />} />
+          <Route path={Path.MANAGE_CONTRACT} element={<ManageContract />} />
+          <Route path={Path.MANAGE_PAYMENT} element={<ManagePayment />} />
+          <Route path={Path.PAYMENT} element={<Payment />} />
+          <Route path={Path.PAYMENT_STATUS} element={<PaymentStatus />} />
           <Route path={Path.EDIT_ACCOUNT} element={<EditAccount />} />
         </Route>
 

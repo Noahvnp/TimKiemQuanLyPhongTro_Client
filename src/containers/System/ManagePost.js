@@ -76,25 +76,25 @@ const ManagePost = () => {
           <option value="0">Đã hết hạn</option>
         </select>
       </div>
-      <table className="w-full table-fixed">
-        {posts && posts.length > 0 && (
-          <thead>
-            <tr className=" bg-secondary1 text-white [&>*]:border [&>*]:p-1">
-              <th>Mã tin</th>
-              <th>Ảnh đại diện</th>
-              <th>Tiêu đề</th>
-              <th>Giá</th>
-              <th>Ngày bắt đầu</th>
-              <th>Ngày hết hạn</th>
-              <th>Trạng thái</th>
-              <th>Danh sách đăng ký</th>
-              <th>Tùy chọn</th>
-            </tr>
-          </thead>
-        )}
-        <tbody>
-          {posts && posts.length > 0 ? (
-            posts?.map((post) => (
+      {posts && posts.length > 0 ? (
+        <table className="w-full table-fixed">
+          {
+            <thead>
+              <tr className=" bg-secondary1 text-white [&>*]:border [&>*]:p-1">
+                <th>Mã tin</th>
+                <th>Ảnh đại diện</th>
+                <th>Tiêu đề</th>
+                <th>Giá</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày hết hạn</th>
+                <th>Trạng thái</th>
+                <th>Danh sách đăng ký</th>
+                <th>Tùy chọn</th>
+              </tr>
+            </thead>
+          }
+          <tbody>
+            {posts?.map((post) => (
               <tr
                 className="[&>*]:border [&>*]:p-1 [&>*]:text-center h-20"
                 key={post.id}
@@ -175,21 +175,21 @@ const ManagePost = () => {
                   </div>
                 </td>
               </tr>
-            ))
-          ) : (
-            <span className="w-full">
-              Bạn chưa có tin đăng.{" "}
-              <Link
-                to={`../${Path.CREATE_POST}`}
-                className="text-orange-600 font-semibold"
-              >
-                Nhấn vào đây
-              </Link>{" "}
-              để đăng tin.
-            </span>
-          )}
-        </tbody>
-      </table>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <span className="w-full">
+          Bạn chưa có tin đăng.{" "}
+          <Link
+            to={`../${Path.CREATE_POST}`}
+            className="text-orange-600 font-semibold"
+          >
+            Nhấn vào đây
+          </Link>{" "}
+          để đăng tin.
+        </span>
+      )}
       {showRenters && <RentersList setShowRenters={setShowRenters} />}
       {isEdit && <UpdatePost setIsEdit={setIsEdit} />}
     </div>

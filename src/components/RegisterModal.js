@@ -2,7 +2,13 @@ import React, { memo, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
-import { InputForm, Button, Select, DateInput } from "../components";
+import {
+  InputForm,
+  Button,
+  Select,
+  DateInput,
+  InputReadOnly,
+} from "../components";
 
 import validateFields from "../utils/Common/validateFields";
 import { apiGetVietNamProvinces, apiRental } from "../services";
@@ -91,22 +97,11 @@ function RegisterModal({ setIsRegister }) {
           </h1>
           <div className="flex gap-4">
             <div className="py-4 flex flex-col flex-auto gap-4">
-              <InputForm
+              <InputReadOnly
                 label={"Thông tin liên hệ"}
-                keyValue="name"
                 value={payload?.name}
-                setValue={setPayload}
-                invalidFields={invalidFields}
-                setInvalidFields={setInvalidFields}
               />
-              <InputForm
-                label={"Điện thoại"}
-                keyValue="phone"
-                setValue={setPayload}
-                value={payload?.phone}
-                invalidFields={invalidFields}
-                setInvalidFields={setInvalidFields}
-              />
+              <InputReadOnly label={"Điện thoại"} value={payload?.phone} />
               <DateInput
                 label="Năm sinh"
                 type="year"
@@ -118,7 +113,6 @@ function RegisterModal({ setIsRegister }) {
               />
               <Select
                 type="province"
-                // name="homnetown"
                 value={province}
                 setValue={setProvince}
                 option={provinces}

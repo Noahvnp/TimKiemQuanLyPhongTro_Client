@@ -41,7 +41,7 @@ const InputFormV2 = ({
             </span>
           )}
         </div>
-        <small className="text-red-500">
+        <small className="text-red-500 text-xs">
           {invalidFields?.some((field) => field.name === name) &&
             invalidFields?.find((field) => field.name === name).message}
         </small>

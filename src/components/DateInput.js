@@ -41,6 +41,20 @@ const DateInput = ({
               dateFormat={"yyyy"}
               yearDropdownItemNumber={20}
             />
+          ) : type === "month" ? (
+            <DatePicker
+              selected={value || null}
+              onChange={(date) => {
+                setValue((prev) => ({ ...prev, [name]: date }));
+              }}
+              dateFormat="MM/yyyy"
+              showMonthYearPicker
+              isClearable
+              showIcon
+              className="!outline-blue-300 flex items-center border-2 border-gray-200 rounded-md"
+              // minDate={payload?.startDate}
+              // maxDate={payload?.endDate}
+            />
           ) : (
             <DatePicker
               selected={value || null}

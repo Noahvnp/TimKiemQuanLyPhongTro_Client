@@ -89,7 +89,7 @@ const ManageRenter = () => {
   return (
     <div className="flex flex-col gap-6 mb-20">
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-        <h1 className="text-2xl font-medium ">Tạo hợp đồng</h1>
+        <h1 className="text-3xl font-medium ">Tạo hợp đồng</h1>
       </div>
       {keyOfPosts?.map((key) => (
         <div key={key}>

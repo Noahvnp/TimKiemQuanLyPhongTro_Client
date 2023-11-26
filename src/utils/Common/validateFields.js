@@ -51,6 +51,10 @@ const validateFields = async (payload, setInvalidFields) => {
       case "waterCost":
       case "depositAmount":
       case "monthlyRent":
+      case "electricIndex_old":
+      case "electricIndex_new":
+      case "waterIndex_old":
+      case "waterIndex_new":
       case "amount":
         if (isNaN(+item[1])) {
           //Kiểm tra xem phần tử có phải là kiểu số hay chưa: +item[1] ==> number
