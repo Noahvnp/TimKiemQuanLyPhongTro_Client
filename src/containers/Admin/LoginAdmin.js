@@ -23,6 +23,7 @@ const LoginAdmin = () => {
   });
 
   useEffect(() => {
+    !isAdmin && dispatch(actions.logout());
     isLoggedIn && isAdmin && navigate(`/admin/${Path.DASHBOARD}`);
   }, [isLoggedIn, isAdmin, navigate]);
 

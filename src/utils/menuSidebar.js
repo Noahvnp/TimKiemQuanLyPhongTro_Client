@@ -3,6 +3,7 @@ import icons from "./icons";
 
 const {
   ImPencil2,
+  MdOutlineSpaceDashboard,
   MdOutlineLibraryBooks,
   MdOutlinePayments,
   BiUserPin,
@@ -12,6 +13,12 @@ const {
 } = icons;
 
 const menuSidebar = [
+  {
+    id: 0,
+    text: "Tổng quan",
+    path: `/he-thong/${Path.OVERVIEW}`,
+    icon: <MdOutlineSpaceDashboard />,
+  },
   {
     id: 1,
     text: "Đăng tin cho thuê",

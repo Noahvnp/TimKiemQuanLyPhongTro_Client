@@ -168,7 +168,7 @@ const DetailPost = () => {
 
               <div className="mt-3">
                 <h3 className="font-bold text-lg">Bản đồ</h3>
-                {posts && <Map address={posts[0]?.address} />}
+                {/* {posts && <Map address={posts[0]?.address} />} */}
               </div>
 
               <div className="my-6">

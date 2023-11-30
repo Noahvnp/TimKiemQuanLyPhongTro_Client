@@ -26,6 +26,8 @@ import {
   MdOutlineLibraryBooks,
   MdClose,
   MdOutlinePayments,
+  MdOutlineSpaceDashboard,
+  MdOutlineBarChart,
 } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
 import { ImPencil2, ImBin } from "react-icons/im";
@@ -48,7 +50,8 @@ import { RxDashboard } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
 import { FcRefresh } from "react-icons/fc";
 import { GiConfirmed } from "react-icons/gi";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaUsers } from "react-icons/fa";
+import { LuFileLineChart, LuFileBarChart2 } from "react-icons/lu";
 
 const icons = {
   AiOutlinePlusCircle,
@@ -77,7 +80,9 @@ const icons = {
   MdOutlineHouseSiding,
   MdOutlineLibraryBooks,
   MdOutlinePayments,
+  MdOutlineSpaceDashboard,
   MdClose,
+  MdOutlineBarChart,
   FiSearch,
   GrStar,
   GrNext,
@@ -98,6 +103,9 @@ const icons = {
   PiUserListFill,
   FcRefresh,
   FaCheck,
+  FaUsers,
+  LuFileLineChart,
+  LuFileBarChart2,
 };
 
 export default icons;

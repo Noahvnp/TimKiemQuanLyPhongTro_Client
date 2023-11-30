@@ -82,3 +82,16 @@ export const apiGetMapGoogle = (address) =>
       reject(error);
     }
   });
+
+export const apiGetOverviews = () =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosConfig({
+        method: "GET",
+        url: "/api/v1/overview/",
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });

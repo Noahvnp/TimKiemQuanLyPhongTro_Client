@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
 import { apiGetRenter, apiGetRooms } from "../../services";
 import CreateContract from "./CreateContract";
+import { Loading } from "../../components";
 
 const ManageRenter = () => {
   const dispatch = useDispatch();
@@ -91,15 +92,19 @@ const ManageRenter = () => {
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
         <h1 className="text-3xl font-medium ">Tạo hợp đồng</h1>
       </div>
-      {keyOfPosts?.map((key) => (
-        <div key={key}>
-          <CreateContract
-            users={rentersList[key]}
-            roomsList={roomsList}
-            postId={key}
-          />
-        </div>
-      ))}
+      {keyOfPosts?.length > 0 ? (
+        keyOfPosts?.map((key) => (
+          <div key={key}>
+            <CreateContract
+              users={rentersList[key]}
+              roomsList={roomsList}
+              postId={key}
+            />
+          </div>
+        ))
+      ) : (
+        <Loading className="flex flex-col mt-8 justify-center items-center" />
+      )}
     </div>
   );
 };

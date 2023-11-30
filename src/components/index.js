@@ -29,3 +29,4 @@ export { default as Map } from "./Map";
 export { default as CreateRoom } from "./CreateRoom";
 export { default as CreatePayment } from "./CreatePayment";
 export { default as CloseBtn } from "./CloseBtn";
+export { default as BarChart } from "./BarChart";

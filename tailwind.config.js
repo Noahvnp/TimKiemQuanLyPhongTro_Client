@@ -7,9 +7,11 @@ module.exports = {
         1100: "1100px",
       },
       backgroundColor: {
-        primary: "#F5F5F5",
-        secondary1: "#1266dd",
-        // secondary1: "#d70018",
+        // primary: "#F5F5F5",c
+        primary: "#eff6ff",
+        // secondary1: "#1266dd",c
+        // secondary1: "#083344",
+        secondary1: "#0369a1",
         secondary2: "#f73859",
         "overlay-30": "rgba(0,0,0,0.3)",
         "overlay-70": "rgba(0,0,0,0.7)",

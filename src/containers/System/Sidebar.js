@@ -12,16 +12,16 @@ import menuSidebar from "../../utils/menuSidebar";
 const { AiOutlineLogout } = icons;
 
 const activeStyle =
-  "hover:bg-gray-200 font-bold flex items-center gap-3 border-b border-gray-200 py-2 rounded-md";
+  "hover:bg-[#0ea5e9] hover:text-white hover:shadow-lg font-bold flex items-center gap-3 border-b border-gray-200 p-2 rounded-md";
 const notActiveStyle =
-  "hover:bg-gray-200 flex items-center gap-3 border-b border-gray-200 py-2 rounded-md cursor-pointer";
+  "hover:bg-[#0ea5e9] hover:text-white hover:shadow-lg flex items-center gap-3 border-b border-gray-200 p-2 rounded-md cursor-pointer";
 
 const Sidebar = () => {
   const { current_user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   return (
-    <div className="w-[256px] flex-none px-4 py-8">
+    <div className="w-[256px] flex-none px-4 py-8 border-2 border-gray-200">
       {current_user && Object.keys(current_user).length > 0 && (
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-4">

@@ -21,6 +21,7 @@ import {
   PaymentStatus,
   Payment,
   System,
+  Overview,
 } from "./containers/System";
 
 import {
@@ -83,7 +84,7 @@ function App() {
             element={<CreatePost isEdit={false} />}
           />
           <Route path={Path.MANAGE_POST} element={<ManagePost />} />
-          {/* <Route path={Path.MANAGE_RENTER} element={<ManageRenter />} /> */}
+          <Route path={Path.OVERVIEW} element={<Overview />} />
           <Route path={Path.CREATE_CONTRACT} element={<ManageRenter />} />
           <Route path={Path.MANAGE_CONTRACT} element={<ManageContract />} />
           <Route path={Path.MANAGE_PAYMENT} element={<ManagePayment />} />

@@ -63,9 +63,12 @@ export const reGetRenter = () => ({
   type: actionTypes.RE_GET_RENTERS_OF_POST,
 });
 
-export const getPayments = () => async (dispatch) => {
+export const getPayments = (type) => async (dispatch) => {
   try {
-    const response = await apiGetPayment();
+    const response =
+      type === 0
+        ? await apiGetPayment({ paymentStatus: "Đã thanh toán" })
+        : await apiGetPayment();
     if (response?.data.err === 0) {
       dispatch({
         type: actionTypes.GET_PAYMENTS,
@@ -87,11 +90,14 @@ export const getPayments = () => async (dispatch) => {
   }
 };
 
-export const getYourPayments = () => async (dispatch) => {
+export const getYourPayments = (type) => async (dispatch) => {
   try {
-    const response = await apiGetYourPayment({
-      paymentStatus: "Chưa thanh toán",
-    });
+    const response =
+      type === 0
+        ? await apiGetPayment({ paymentStatus: "Đã thanh toán" })
+        : await apiGetYourPayment({
+            paymentStatus: "Chưa thanh toán",
+          });
     if (response?.data.err === 0) {
       dispatch({
         type: actionTypes.GET_YOUR_PAYMENTS,

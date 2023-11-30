@@ -217,7 +217,7 @@ const CreateContract = ({ users, roomsList, postId }) => {
               text="TẠO HỢP ĐỒNG"
               fontSz="font-bold text-xl"
               textColor="text-white"
-              className="my-3 col-span-3 bg-green-500"
+              className="my-5 col-span-3 bg-green-500"
               onClick={() => handleSubmit(postRenter?.id)}
             />
             <InputReadOnly
@@ -306,7 +306,7 @@ const CreateContract = ({ users, roomsList, postId }) => {
                 text="TẠO HỢP ĐỒNG"
                 fontSz="font-bold text-xl"
                 textColor="text-white"
-                className="m-2 col-span-3 bg-green-500"
+                className="my-5 col-span-3 bg-green-500"
                 onClick={() => handleSubmit(postRenter?.id)}
               />
 

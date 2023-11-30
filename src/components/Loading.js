@@ -1,9 +1,9 @@
 import React from "react";
 import { RotatingLines } from "react-loader-spinner";
 
-const Loading = () => {
+const Loading = ({ className }) => {
   return (
-    <>
+    <div className={className}>
       <RotatingLines
         strokeColor="blue"
         strokeWidth="5"
@@ -12,7 +12,7 @@ const Loading = () => {
         visible={true}
       />
       <small>Vui lòng đợi...</small>
-    </>
+    </div>
   );
 };
 

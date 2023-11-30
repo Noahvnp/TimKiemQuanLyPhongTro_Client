@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import moment from "moment";
 
-import { Button, Select } from "../../components";
-import { Payment } from "./";
+import { Button } from "../../components";
 
 import icons from "../../utils/icons";
 import { formatPrice } from "../../utils/Common/formatPrice";
@@ -13,7 +12,7 @@ import { formatPrice } from "../../utils/Common/formatPrice";
 import { getPayments, getYourPayments } from "../../store/actions";
 import { apiUpdatePayment, apiVerifyPayment } from "../../services";
 
-const { FiEdit, ImBin, BsClipboard2PlusFill, AiFillEye, FaCheck } = icons;
+const { FiEdit, ImBin, AiFillEye, FaCheck } = icons;
 
 const ManagePayment = () => {
   const dispatch = useDispatch();
@@ -24,11 +23,25 @@ const ManagePayment = () => {
   const [isManagePayment, setIsManagePayment] = useState(true);
 
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentFilter, setPaymentFilter] = useState([]);
 
   useEffect(() => {
     isManagePayment && dispatch(getPayments());
     !isManagePayment && dispatch(getYourPayments());
   }, [dispatch, isManagePayment]);
+
+  const handleFilterByStatus = (statusCode) => {
+    if (statusCode === 0) {
+      //Đã thanh toán
+      isManagePayment && dispatch(getPayments(statusCode));
+      !isManagePayment && dispatch(getYourPayments(statusCode));
+      setPaymentFilter(true);
+    } else if (statusCode === 1) {
+      //Chưa thanh toán
+      isManagePayment && dispatch(getPayments());
+      !isManagePayment && dispatch(getYourPayments());
+    }
+  };
 
   const handlePayment = async (
     paymentId,
@@ -89,6 +102,15 @@ const ManagePayment = () => {
             Hóa đơn cần thanh toán
           </span>
         </h1>
+        {isManagePayment && (
+          <select
+            className="outline-none border border-gray-200 rounded-md p-2 shadow-sm"
+            onChange={(e) => handleFilterByStatus(+e.target.value)}
+          >
+            <option value="1">Chưa thanh toán</option>
+            <option value="0">Đã thanh toán</option>
+          </select>
+        )}
       </div>
 
       {isManagePayment ? (
@@ -150,14 +172,15 @@ const ManagePayment = () => {
                   <td>
                     <div className="flex flex-col justify-center items-center">
                       {payment?.paymentStatus}
-                      {payment?.paymentMethod && (
-                        <span
-                          className="font-bold text-blue-600 cursor-pointer hover:underline"
-                          onClick={() => handleVerifyPayment(payment.id)}
-                        >
-                          Xác nhận
-                        </span>
-                      )}
+                      {payment?.paymentMethod === "Thanh toán trực tiếp" &&
+                        payment?.paymentStatus === "Chưa thanh toán" && (
+                          <span
+                            className="font-bold text-blue-600 cursor-pointer hover:underline"
+                            onClick={() => handleVerifyPayment(payment.id)}
+                          >
+                            Xác nhận
+                          </span>
+                        )}
                     </div>
                   </td>
                   <td>

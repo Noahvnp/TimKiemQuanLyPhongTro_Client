@@ -14,6 +14,7 @@ export const Path = {
 
   SYSTEM: "/he-thong/*",
   CREATE_POST: "tao-moi-bai-dang",
+  OVERVIEW: "tong-quan",
   MANAGE_POST: "quan-ly-bai-dang",
   MANAGE_RENTER: "quan-ly-nguoi-thue",
   CREATE_CONTRACT: "tao-hop-dong",
@@ -40,14 +41,14 @@ export const textHomeContent = {
 
 export const location = [
   {
+    name: "Phòng trọ Cần Thơ",
+    image: "https://phongtro123.com/images/location_hn.jpg",
+    code: "NOHG",
+  },
+  {
     name: "Phòng trọ Hồ Chí Minh ",
     image: "https://phongtro123.com/images/location_hcm.jpg",
     code: "CHMN",
-  },
-  {
-    name: "Phòng trọ Hà Nội",
-    image: "https://phongtro123.com/images/location_hn.jpg",
-    code: "NNIT",
   },
   {
     name: "Phòng trọ Đà Nẵng",
