@@ -97,3 +97,16 @@ export const apiDeletePost = (postId) =>
       reject(error);
     }
   });
+
+export const apiGetOverviewAdmin = () =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosConfig({
+        method: "GET",
+        url: "/api/v1/overview/admin",
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });

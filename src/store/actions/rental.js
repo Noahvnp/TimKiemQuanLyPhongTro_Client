@@ -123,3 +123,11 @@ export const verifyPayment = (paymentId) => ({
   type: actionTypes.VERIFY_PAYMENT,
   paymentId,
 });
+
+export const reGetPayment = () => ({
+  type: actionTypes.RE_GET_PAYMENT,
+});
+
+export const reGetYourPayment = () => ({
+  type: actionTypes.RE_GET_YOUR_PAYMENT,
+});

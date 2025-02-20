@@ -31,8 +31,8 @@ const BarChart = ({ dataOverview }) => {
         barThickness: 30,
       },
       {
-        label: "Hợp đồng",
-        data: [4, 2, dataOverview?.contracts],
+        label: "Doanh thu",
+        data: [4, 2, +dataOverview?.amount / Math.pow(10, 6)],
         backgroundColor: "rgba(53, 162, 235, 0.5)",
         barThickness: 30,
       },

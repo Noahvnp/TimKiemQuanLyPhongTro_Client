@@ -28,23 +28,6 @@ const ManageContract = () => {
     dispatch(getContract());
   }, []);
 
-  const handleDesContract = (contract) => {
-    let depositAmount = `-Tiền cọc: ${formatPrice(+contract?.depositAmount)} `;
-    let room = "";
-    if (contract?.room?.id) {
-      room = `
-      - Chi tiết phòng: Tên phòng: ${
-        contract?.room?.roomName
-      }. Giá thuê: ${formatPricePerMonth(
-        +contract?.room?.monthlyRent / Math.pow(10, 6)
-      )}. Loại phòng: ${
-        contract?.room?.roomType
-      }. Điện: ${+contract?.electrictCost}. Nước: ${+contract?.waterCost}. `;
-    }
-
-    return depositAmount + room;
-  };
-
   return (
     <div className="flex flex-col gap-6 mb-20">
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
@@ -92,8 +75,28 @@ const ManageContract = () => {
                         contract?.renter?.renterPost?.priceNumber.toString()
                       )}
                 </td>
-                <td className="text-sm h-[100px]">
-                  {handleDesContract(contract)}
+                <td className="!text-start h-[100px]">
+                  <div>
+                    <ul>
+                      <li>{`-Tiền cọc: ${formatPrice(
+                        +contract?.depositAmount
+                      )} `}</li>
+                      {contract?.note && (
+                        <li>{`- Ghi chú: ${contract?.note}`}</li>
+                      )}
+                      {contract?.room?.id && (
+                        <ul>
+                          - Chi tiết phòng:
+                          <li>{`+ Tên phòng: ${contract?.room?.roomName}.`}</li>
+                          <li>{`+ Giá thuê: ${formatPricePerMonth(
+                            +contract?.room?.monthlyRent / Math.pow(10, 6)
+                          )}. `}</li>
+                          <li>{`+ Điện: ${+contract?.electrictCost}. Nước: ${+contract?.waterCost}. `}</li>
+                          <li>{`+ Loại phòng: ${contract?.room?.roomType}.`}</li>
+                        </ul>
+                      )}
+                    </ul>
+                  </div>
                 </td>
                 <td>
                   {moment(contract?.startDate).format(

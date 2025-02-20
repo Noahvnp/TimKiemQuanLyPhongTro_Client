@@ -18,8 +18,6 @@ const ManageUsers = () => {
     dispatch(actions.getAllUsers());
   }, []);
 
-  console.log(users);
-
   return (
     <div className="flex flex-col gap-6">
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
@@ -34,7 +32,7 @@ const ManageUsers = () => {
               <th>Số điện thoại</th>
               <th>Ngày tạo tài khoản</th>
               <th>Số bài đăng</th>
-              <th>Trạng thái</th>
+              <th>Quyền</th>
               <th>Tùy chọn</th>
             </tr>
           </thead>
@@ -55,8 +53,8 @@ const ManageUsers = () => {
                     .reverse()
                     .join("-")}
                 </td>
-                <td>0</td>
-                <td>bth</td>
+                <td>1</td>
+                <td>{user?.role ? user?.role : "Người dùng thường"}</td>
                 <td>
                   <div className="flex items-center justify-center gap-2">
                     <Button

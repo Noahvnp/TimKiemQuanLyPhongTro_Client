@@ -166,7 +166,7 @@ const CreatePost = ({ isEdit }) => {
           />
         </div>
         <div className="w-[30%] flex-none py-4">
-          {/* <Map address={payload?.address} /> */}
+          <Map address={payload?.address} />
         </div>
       </div>
     </div>

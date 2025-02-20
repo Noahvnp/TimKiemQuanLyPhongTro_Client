@@ -1,15 +1,15 @@
 import { Path } from "./constants";
 import icons from "./icons";
 
-const { ImPencil2, MdOutlineLibraryBooks, BiUserPin } = icons;
+const {
+  ImPencil2,
+  MdOutlineLibraryBooks,
+  BiUserPin,
+  BsJournals,
+  MdOutlinePayments,
+} = icons;
 
 const menuManager = [
-  {
-    id: 1,
-    text: "Đăng tin cho thuê",
-    path: `/he-thong/${Path.CREATE_POST}`,
-    icon: <ImPencil2 />,
-  },
   {
     id: 2,
     text: "Quản lý tin đăng",
@@ -18,6 +18,19 @@ const menuManager = [
   },
   {
     id: 3,
+    text: "Quản lý hợp đồng",
+    path: `/he-thong/${Path.MANAGE_CONTRACT}`,
+    icon: <BsJournals />,
+  },
+
+  {
+    id: 4,
+    text: " Quản lý thanh toán",
+    path: `/he-thong/${Path.MANAGE_PAYMENT}`,
+    icon: <MdOutlinePayments />,
+  },
+  {
+    id: 5,
     text: "Thông tin tài khoản",
     path: `/he-thong/${Path.EDIT_ACCOUNT}`,
     icon: <BiUserPin />,

@@ -10,6 +10,8 @@ const initState = {
   count: 0,
   reGetRoom: false,
   reGetRenter: false,
+  reGetPayment: false,
+  reGetYourPayment: false,
 };
 
 const rentalReducer = (state = initState, action) => {
@@ -62,6 +64,18 @@ const rentalReducer = (state = initState, action) => {
       return {
         ...state,
         reGetRenter: true,
+      };
+
+    case actionTypes.RE_GET_PAYMENT:
+      return {
+        ...state,
+        reGetPayment: true,
+      };
+
+    case actionTypes.RE_GET_YOUR_PAYMENT:
+      return {
+        ...state,
+        reGetYourPayment: true,
       };
     default:
       return state;

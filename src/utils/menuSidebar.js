@@ -52,7 +52,7 @@ const menuSidebar = [
   },
   {
     id: 6,
-    text: "Sửa thông tin cá nhân",
+    text: "Thông tin cá nhân",
     path: `/he-thong/${Path.EDIT_ACCOUNT}`,
     icon: <BiUserPin />,
   },

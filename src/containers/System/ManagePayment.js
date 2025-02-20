@@ -9,7 +9,12 @@ import { Button } from "../../components";
 import icons from "../../utils/icons";
 import { formatPrice } from "../../utils/Common/formatPrice";
 
-import { getPayments, getYourPayments } from "../../store/actions";
+import {
+  getPayments,
+  getYourPayments,
+  reGetPayment,
+  reGetYourPayment,
+} from "../../store/actions";
 import { apiUpdatePayment, apiVerifyPayment } from "../../services";
 
 const { FiEdit, ImBin, AiFillEye, FaCheck } = icons;
@@ -18,7 +23,8 @@ const ManagePayment = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { payments, your_payment } = useSelector((state) => state.rental);
+  const { payments, your_payment, reGetYourPayments, reGetPayments } =
+    useSelector((state) => state.rental);
 
   const [isManagePayment, setIsManagePayment] = useState(true);
 
@@ -26,9 +32,9 @@ const ManagePayment = () => {
   const [paymentFilter, setPaymentFilter] = useState([]);
 
   useEffect(() => {
-    isManagePayment && dispatch(getPayments());
-    !isManagePayment && dispatch(getYourPayments());
-  }, [dispatch, isManagePayment]);
+    (isManagePayment || reGetPayments) && dispatch(getPayments());
+    (!isManagePayment || reGetYourPayments) && dispatch(getYourPayments());
+  }, [dispatch, isManagePayment, reGetYourPayments, reGetPayments]);
 
   const handleFilterByStatus = (statusCode) => {
     if (statusCode === 0) {
@@ -54,6 +60,7 @@ const ManagePayment = () => {
       if (response?.data.err === 0) {
         Swal.fire("Thành công!", response?.data?.msg, "success").then(() => {
           setIsManagePayment(false);
+          dispatch(reGetYourPayment());
         });
       } else {
         Swal.fire("Oops!", response?.data?.msg, "error");
@@ -75,6 +82,7 @@ const ManagePayment = () => {
     if (response?.data.err === 0) {
       Swal.fire("Thành công!", response?.data?.msg, "success").then(() => {
         setIsManagePayment(true);
+        dispatch(reGetPayment());
       });
     } else {
       Swal.fire("Oops!", response?.data?.msg, "error");
@@ -88,7 +96,7 @@ const ManagePayment = () => {
           <span
             className={`${
               isManagePayment && "font-semibold text-orange-600 underline"
-            } bg-gray-200 p-3 rounded-md cursor-pointer`}
+            } bg-blue-200 font-medium p-4 shadow-md rounded-xl cursor-pointer`}
             onClick={() => setIsManagePayment(true)}
           >
             Quản lý thanh toán
@@ -96,7 +104,7 @@ const ManagePayment = () => {
           <span
             className={`${
               !isManagePayment && "font-semibold text-orange-600 underline"
-            } bg-gray-200 p-3 rounded-md cursor-pointer`}
+            } bg-blue-200 font-medium p-4 shadow-md rounded-xl cursor-pointer`}
             onClick={() => setIsManagePayment(false)}
           >
             Hóa đơn cần thanh toán
@@ -149,8 +157,9 @@ const ManagePayment = () => {
                           <ul>
                             -Chi tiết hóa đơn:
                             <li>{`+ Giá điện / kWh: ${payment?.contract?.electrictCost} `}</li>
-                            <li>{`+ Chỉ số điện cũ: ${payment?.electricIndex_old} kWh`}</li>
-                            <li>{`+ Chỉ số điện mới: ${payment?.electricIndex_new} kWh`}</li>
+                            <li>{`+ Giá nước / m3: ${payment?.contract?.waterCost} `}</li>
+                            <li>{`+ Chỉ số điện: ${payment?.electricIndex_old} -> ${payment?.electricIndex_new} kWh`}</li>
+                            <li>{`+ Chỉ số nước: ${payment?.waterIndex_old} -> ${payment?.waterIndex_new} m3`}</li>
                           </ul>
                         )}
                       </ul>
@@ -172,15 +181,14 @@ const ManagePayment = () => {
                   <td>
                     <div className="flex flex-col justify-center items-center">
                       {payment?.paymentStatus}
-                      {payment?.paymentMethod === "Thanh toán trực tiếp" &&
-                        payment?.paymentStatus === "Chưa thanh toán" && (
-                          <span
-                            className="font-bold text-blue-600 cursor-pointer hover:underline"
-                            onClick={() => handleVerifyPayment(payment.id)}
-                          >
-                            Xác nhận
-                          </span>
-                        )}
+                      {payment?.paymentStatus === "Chờ xác nhận" && (
+                        <span
+                          className="font-bold text-blue-600 cursor-pointer hover:underline"
+                          onClick={() => handleVerifyPayment(payment.id)}
+                        >
+                          Xác nhận
+                        </span>
+                      )}
                     </div>
                   </td>
                   <td>
@@ -216,7 +224,7 @@ const ManagePayment = () => {
             </tbody>
           </table>
         ) : (
-          <>Bạn chưa có hóa đơn cho thuê.</>
+          <>Bạn chưa có hóa đơn.</>
         )
       ) : your_payment && your_payment.length > 0 ? (
         <table className="w-full table-auto">

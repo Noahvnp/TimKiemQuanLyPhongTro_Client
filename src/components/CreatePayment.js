@@ -140,7 +140,7 @@ const CreatPayment = ({ setIsCreateBill, data, type }) => {
       }}
     >
       <div
-        className="bg-white max-w-600 w-full h-fit overflow-y-auto"
+        className="bg-white max-w-600 w-full h-full overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="px-6 py-3">
