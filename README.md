@@ -33,7 +33,7 @@ The application enables users to search, book, and manage room rentals with an i
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/room-rental-frontend.git
+   git clone https://github.com/Noahvnp/TimKiemQuanLyPhongTro_Client.git
    ```
 2. **Install dependencies:**
    ```bash
